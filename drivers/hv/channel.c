@@ -57,6 +57,21 @@ static inline u32 hv_gpadl_size(enum hv_gpadl_type type, u32 size)
 }
 
 /*
+ * vmbus_set_event - Send an event notification to the parent
+ */
+static void vmbus_set_event(struct vmbus_channel *channel)
+{
+	u32 child_relid = channel->offermsg.child_relid;
+
+	if (!channel->is_dedicated_interrupt)
+		vmbus_send_interrupt(child_relid);
+
+	++channel->sig_events;
+
+	hv_do_fast_hypercall8(HVCALL_SIGNAL_EVENT, channel->sig_event);
+}
+
+/*
  * hv_ring_gpadl_send_hvpgoffset - Calculate the send offset (in unit of
  *                                 HV_HYP_PAGE) in a ring gpadl based on the
  *                                 offset in the guest
