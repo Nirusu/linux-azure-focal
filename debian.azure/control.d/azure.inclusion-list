@@ -30,6 +30,7 @@ drivers/block/nbd.ko
 drivers/block/rbd.ko
 drivers/block/virtio_blk.ko
 drivers/block/xen-blkfront.ko
+drivers/catapult/catapult.ko
 drivers/char/hangcheck-timer.ko
 drivers/char/hw_random/powernv-rng.ko
 drivers/char/hw_random/virtio-rng.ko
