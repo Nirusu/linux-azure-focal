@@ -37,6 +37,9 @@ CONFIG_NO_HZ_IDLE                                  note<LP:#1818138> mark<ENFORC
 CONFIG_HOTPLUG_CPU                                 policy<{'amd64': 'y'}>
 CONFIG_HOTPLUG_CPU                                 note<LP:#1821934> mark<ENFORCED>
 
+CONFIG_CATAPULT_PCI                                policy<{'amd64': 'm'}>
+CONFIG_CATAPULT_PCI                                mark<ENFORCED> note<LP:#1824879>
+
 CONFIG_HYPERV                                      policy<{'amd64': 'y'}>
 CONFIG_HYPERV                                      mark<ENFORCED> note<LP:#1690136>
 
