@@ -1,0 +1,11 @@
+config CATAPULT_PCI
+	tristate "Catapult FPGA PCI Driver"
+	depends on PCI
+	help
+	  Select this option to enable PCI driver for PCI-based
+	  Field-Programmable Gate Array (FPGA) solutions which
+	  implement the Catapult FPGA interface.  This driver
+	  provides interfaces for userspace applications to configure,
+	  open and access the Catapult-based accelerators on the FPGA.
+
+	  To compile this as a module, choose M here.
