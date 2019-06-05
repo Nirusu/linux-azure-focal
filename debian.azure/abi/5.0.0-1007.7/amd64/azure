@@ -3708,6 +3708,7 @@ EXPORT_SYMBOL vmlinux 0x00000000	backlight_force_update
 EXPORT_SYMBOL vmlinux 0x00000000	backlight_register_notifier
 EXPORT_SYMBOL vmlinux 0x00000000	backlight_unregister_notifier
 EXPORT_SYMBOL vmlinux 0x00000000	balance_dirty_pages_ratelimited
+EXPORT_SYMBOL vmlinux 0x00000000	bcmp
 EXPORT_SYMBOL vmlinux 0x00000000	bd_set_size
 EXPORT_SYMBOL vmlinux 0x00000000	bdev_dax_pgoff
 EXPORT_SYMBOL vmlinux 0x00000000	bdev_read_only
@@ -10326,7 +10327,6 @@ EXPORT_SYMBOL_GPL net/atm/atm 0x00000000	unregister_atmdevice_notifier
 EXPORT_SYMBOL_GPL net/ax25/ax25 0x00000000	ax25_bcast
 EXPORT_SYMBOL_GPL net/ax25/ax25 0x00000000	ax25_defaddr
 EXPORT_SYMBOL_GPL net/ax25/ax25 0x00000000	ax25_register_pid
-EXPORT_SYMBOL_GPL net/bridge/br_netfilter 0x00000000	br_netfilter_enable
 EXPORT_SYMBOL_GPL net/bridge/bridge 0x00000000	br_dev_queue_push_xmit
 EXPORT_SYMBOL_GPL net/bridge/bridge 0x00000000	br_fdb_clear_offload
 EXPORT_SYMBOL_GPL net/bridge/bridge 0x00000000	br_fdb_find_port
