@@ -2669,6 +2669,11 @@ int hvnd_register_device(struct hvnd_dev *dev, char *ip_addr, char *mac_addr)
 
 	dev->ibdev.ops.get_port_immutable = hvnd_get_port_immutable;
 
+	dev->ibdev.uverbs_ex_cmd_mask |=
+                (1ull << IB_USER_VERBS_EX_CMD_QUERY_DEVICE) |
+                (1ull << IB_USER_VERBS_EX_CMD_CREATE_CQ) |
+                (1ull << IB_USER_VERBS_EX_CMD_CREATE_QP);
+
 	//DMA ops for mapping all possible addresses
 	dev->ibdev.dev.parent = &(dev->hvdev->device);
 	dev->ibdev.dev.dma_ops = &vmbus_dma_ops;
