@@ -13697,6 +13697,7 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	hugetlb_cgrp_subsys_on_dfl_key
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	hv_get_tsc_page
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	hv_hypercall_pg
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	hv_is_hyperv_initialized
+EXPORT_SYMBOL_GPL vmlinux 0x00000000	hv_max_vp_index
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	hv_pkt_iter_close
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	hv_pkt_iter_first
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	hv_remove_crash_handler
