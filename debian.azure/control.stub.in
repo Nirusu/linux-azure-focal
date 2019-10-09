@@ -43,8 +43,8 @@ Build-Depends-Indep:
  bzip2 <!stage1>,
  sharutils <!stage1>,
  asciidoc <!stage1>,
- python-sphinx <!stage1>,
- python-sphinx-rtd-theme <!stage1>,
+ python3-sphinx <!stage1>,
+ python3-sphinx-rtd-theme <!stage1>,
  python3-docutils <!stage1>,
 Vcs-Git: git://git.launchpad.net/~canonical-kernel/ubuntu/+source/linux-azure/+git/=SERIES=
 XS-Testsuite: autopkgtest
