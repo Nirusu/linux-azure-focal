@@ -185,5 +185,14 @@ CONFIG_GPIO_TWL4030                                note<Unnecessary for Azure>
 CONFIG_SOUND_OSS_CORE_PRECLAIM                     policy<{'amd64': '-'}>
 CONFIG_SOUND_OSS_CORE_PRECLAIM                     note<Unnecessary for Azure>
 
+CONFIG_SND_SOC_SOF_HDA_AUDIO_CODEC                 policy<{'amd64': '-'}>
+CONFIG_SND_SOC_SOF_HDA_AUDIO_CODEC                 note<Unnecessary for Azure>
+
+CONFIG_SND_SOC_SOF_HDA_LINK                        policy<{'amd64': '-'}>
+CONFIG_SND_SOC_SOF_HDA_LINK                        note<Unnecessary for Azure>
+
+CONFIG_SND_SOC_SOF_NOCODEC_SUPPORT                 policy<{'amd64': '-'}>
+CONFIG_SND_SOC_SOF_NOCODEC_SUPPORT                 note<Unnecessary for Azure>
+
 CONFIG_NETWORK_PHY_TIMESTAMPING                    policy<{'amd64': 'n'}>
 CONFIG_NETWORK_PHY_TIMESTAMPING                    note<Unnecessary for Azure>
