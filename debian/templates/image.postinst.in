@@ -59,4 +59,13 @@ EOF
     dpkg-trigger --no-await linux-update-$version
 fi
 
+# Divert conf files blacklisting intel_sgx for LP: #1862201"
+for file in /lib/modprobe.d/blacklist_*.conf; do
+	# Check for the LP bug that introduced the blacklist to avoid
+	# issues with future changes that might contain the module name
+	if grep -q 'LP:1844245' "$file"; then
+	    dpkg-divert --add --rename --divert "$file.ignore" "$file";
+	fi;
+done
+
 exit 0
