@@ -223,3 +223,6 @@ CONFIG_SND_SOC_INTEL_SKYLAKE_HDAUDIO_CODEC         note<Not selectable for Azure
 
 CONFIG_SND_SOC_INTEL_CNL                           policy<{'amd64': '-'}>
 CONFIG_SND_SOC_INTEL_CNL                           note<Not selectable for Azure>
+
+CONFIG_X86_UV                                      policy<{'amd64': 'n'}>
+CONFIG_X86_UV                                      note<Unnecessary for Azure>
