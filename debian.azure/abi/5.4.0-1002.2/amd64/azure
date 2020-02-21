@@ -8569,6 +8569,7 @@ EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_lapic_switch_to_hv_timer
 EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_lapic_switch_to_sw_timer	
 EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_lmsw	
 EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_load_guest_xcr0	
+EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_map_gfn	
 EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_max_guest_tsc_khz	
 EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_max_tsc_scaling_ratio	
 EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_mce_cap_supported	
@@ -8638,6 +8639,7 @@ EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_slot_page_track_remove_page
 EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_spurious_fault	
 EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_task_switch	
 EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_tsc_scaling_ratio_frac_bits	
+EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_unmap_gfn	
 EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_valid_efer	
 EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_vcpu_block	
 EXPORT_SYMBOL_GPL arch/x86/kvm/kvm 0x00000000	kvm_vcpu_cache	
