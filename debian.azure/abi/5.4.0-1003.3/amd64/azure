@@ -3652,6 +3652,7 @@ EXPORT_SYMBOL vmlinux 0x00000000	abort_creds
 EXPORT_SYMBOL vmlinux 0x00000000	account_page_redirty	
 EXPORT_SYMBOL vmlinux 0x00000000	acpi_acquire_global_lock	
 EXPORT_SYMBOL vmlinux 0x00000000	acpi_acquire_mutex	
+EXPORT_SYMBOL vmlinux 0x00000000	acpi_any_gpe_status_set	
 EXPORT_SYMBOL vmlinux 0x00000000	acpi_attach_data	
 EXPORT_SYMBOL vmlinux 0x00000000	acpi_bios_error	
 EXPORT_SYMBOL vmlinux 0x00000000	acpi_bios_exception	
@@ -6409,9 +6410,11 @@ EXPORT_SYMBOL vmlinux 0x00000000	overflowuid
 EXPORT_SYMBOL vmlinux 0x00000000	override_creds	
 EXPORT_SYMBOL vmlinux 0x00000000	packing	
 EXPORT_SYMBOL vmlinux 0x00000000	padata_alloc_possible	
+EXPORT_SYMBOL vmlinux 0x00000000	padata_alloc_shell	
 EXPORT_SYMBOL vmlinux 0x00000000	padata_do_parallel	
 EXPORT_SYMBOL vmlinux 0x00000000	padata_do_serial	
 EXPORT_SYMBOL vmlinux 0x00000000	padata_free	
+EXPORT_SYMBOL vmlinux 0x00000000	padata_free_shell	
 EXPORT_SYMBOL vmlinux 0x00000000	padata_register_cpumask_notifier	
 EXPORT_SYMBOL vmlinux 0x00000000	padata_remove_cpu	
 EXPORT_SYMBOL vmlinux 0x00000000	padata_set_cpumask	
@@ -12939,7 +12942,6 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	crypto_shash_final
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	crypto_shash_finup	
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	crypto_shash_setkey	
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	crypto_shash_update	
-EXPORT_SYMBOL_GPL vmlinux 0x00000000	crypto_shoot_alg	
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	crypto_skcipher_decrypt	
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	crypto_skcipher_encrypt	
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	crypto_spawn_tfm	
@@ -14024,6 +14026,7 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	gpiod_set_value
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	gpiod_set_value_cansleep	
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	gpiod_to_chip	
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	gpiod_to_irq	
+EXPORT_SYMBOL_GPL vmlinux 0x00000000	gpiod_toggle_active_low	
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	gpiod_unexport	
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	guid_gen	
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	handle_bad_irq	
@@ -15620,6 +15623,7 @@ EXPORT_SYMBOL_GPL vmlinux 0x00000000	regulator_get_voltage_sel_regmap
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	regulator_has_full_constraints	
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	regulator_is_enabled	
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	regulator_is_enabled_regmap	
+EXPORT_SYMBOL_GPL vmlinux 0x00000000	regulator_is_equal	
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	regulator_is_supported_voltage	
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	regulator_list_hardware_vsel	
 EXPORT_SYMBOL_GPL vmlinux 0x00000000	regulator_list_voltage	
