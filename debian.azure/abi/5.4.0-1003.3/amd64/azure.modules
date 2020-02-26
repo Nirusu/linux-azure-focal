@@ -743,6 +743,7 @@ intel_powerclamp
 intel_punit_ipc
 intel_qat
 intel_quark_i2c_gpio
+intel_sgx
 intel_soc_dts_iosf
 intel_soc_dts_thermal
 intel_soc_pmic_bxtwc
