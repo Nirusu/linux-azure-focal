@@ -287,7 +287,7 @@ static u32 sgx_calc_ssaframesize(u32 miscselect, u64 xfrm)
 	int i;
 
 	for (i = 2; i < 64; i++) {
-		if (!((1 << i) & xfrm))
+		if (!((1ULL << i) & xfrm))
 			continue;
 
 		size = SGX_SSA_GPRS_SIZE + sgx_xsave_size_tbl[i];
@@ -881,7 +881,7 @@ int sgx_encl_init(struct sgx_encl *encl, struct sgx_sigstruct *sigstruct,
 
 	/* Check that the required attributes have been authorized. */
 	if (encl->attributes & ~encl->allowed_attributes)
-		return -EINVAL;
+		return -EACCES;
 
 	flush_work(&encl->add_page_work);
 
