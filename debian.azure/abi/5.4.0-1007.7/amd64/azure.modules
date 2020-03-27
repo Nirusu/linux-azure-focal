@@ -2004,11 +2004,13 @@ xfrm_ipcomp
 xfrm_user
 xfs
 xgene-hwmon
+xhci-plat-hcd
 xiaomi-wmi
 xilinx_emac
 xilinx_sdfec
 xlnx_vcu
 xor
+xr_usb_serial_common
 xsk_diag
 xt_AUDIT
 xt_CHECKSUM
