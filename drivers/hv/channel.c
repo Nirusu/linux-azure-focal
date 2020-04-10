@@ -167,7 +167,8 @@ static int __vmbus_open(struct vmbus_channel *newchannel,
 	err = vmbus_establish_gpadl(newchannel,
 				    page_address(newchannel->ringbuffer_page),
 				    (send_pages + recv_pages) << PAGE_SHIFT,
-				    &newchannel->ringbuffer_gpadlhandle);
+				    &newchannel->ringbuffer_gpadlhandle,
+				    VMBUS_PAGE_VISIBLE_READ_WRITE);
 	if (err)
 		goto error_clean_ring;
 
@@ -306,7 +307,8 @@ EXPORT_SYMBOL_GPL(vmbus_send_tl_connect_request);
  * create_gpadl_header - Creates a gpadl for the specified buffer
  */
 static int create_gpadl_header(void *kbuffer, u32 size,
-			       struct vmbus_channel_msginfo **msginfo)
+		struct vmbus_channel_msginfo **msginfo,
+		u32 visibility)
 {
 	int i;
 	int pagecount;
@@ -450,7 +452,7 @@ nomem:
  * @gpadl_handle: some funky thing
  */
 int vmbus_establish_gpadl(struct vmbus_channel *channel, void *kbuffer,
-			       u32 size, u32 *gpadl_handle)
+			       u32 size, u32 *gpadl_handle, u32 visibility)
 {
 	struct vmbus_channel_gpadl_header *gpadlmsg;
 	struct vmbus_channel_gpadl_body *gpadl_body;
@@ -464,7 +466,7 @@ int vmbus_establish_gpadl(struct vmbus_channel *channel, void *kbuffer,
 	next_gpadl_handle =
 		(atomic_inc_return(&vmbus_connection.next_gpadl_handle) - 1);
 
-	ret = create_gpadl_header(kbuffer, size, &msginfo);
+	ret = create_gpadl_header(kbuffer, size, &msginfo, visibility);
 	if (ret)
 		return ret;
 
@@ -546,6 +548,7 @@ cleanup:
 	return ret;
 }
 EXPORT_SYMBOL_GPL(vmbus_establish_gpadl);
+
 
 /*
  * vmbus_teardown_gpadl -Teardown the specified GPADL handle
