@@ -894,7 +894,11 @@ int vmbus_sendpacket_pagebuffer(struct vmbus_channel *channel,
 	bufferlist[2].iov_base = &aligned_data;
 	bufferlist[2].iov_len = (packetlen_aligned - packetlen);
 
-	return hv_ringbuffer_write(channel, bufferlist, 3);
+	if (hv_is_isolation_supported())
+		return vmbus_sendpacket_pagebuffer_bounce(channel, &desc,
+			descsize, bufferlist, io_type, bounce_pkt);
+	else
+		return hv_ringbuffer_write(channel, bufferlist, 3);
 }
 EXPORT_SYMBOL_GPL(vmbus_sendpacket_pagebuffer);
 
@@ -934,7 +938,13 @@ int vmbus_sendpacket_mpb_desc(struct vmbus_channel *channel,
 	bufferlist[2].iov_base = &aligned_data;
 	bufferlist[2].iov_len = (packetlen_aligned - packetlen);
 
-	return hv_ringbuffer_write(channel, bufferlist, 3);
+	if (hv_is_isolation_supported()) {
+		BUG_ON(io_type >= IO_TYPE_UNKNOWN);
+		return vmbus_sendpacket_mpb_desc_bounce(channel, desc,
+				desc_size, bufferlist, io_type, bounce_pkt);
+	} else {
+		return hv_ringbuffer_write(channel, bufferlist, 3);
+	}
 }
 EXPORT_SYMBOL_GPL(vmbus_sendpacket_mpb_desc);
 
