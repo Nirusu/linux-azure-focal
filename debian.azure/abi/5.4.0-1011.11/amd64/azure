@@ -2277,6 +2277,7 @@ EXPORT_SYMBOL	 drivers/video/fbdev/core/sysimgblt 0x00000000	sys_imageblit
 EXPORT_SYMBOL	 drivers/watchdog/iTCO_vendor_support 0x00000000	iTCO_vendor_check_noreboot_on
 EXPORT_SYMBOL	 drivers/watchdog/iTCO_vendor_support 0x00000000	iTCO_vendor_pre_start
 EXPORT_SYMBOL	 drivers/watchdog/iTCO_vendor_support 0x00000000	iTCO_vendor_pre_stop
+EXPORT_SYMBOL	 drivers/watchdog/iTCO_vendor_support 0x00000000	iTCO_vendorsupport
 EXPORT_SYMBOL	 fs/fscache/fscache 0x00000000	__fscache_acquire_cookie
 EXPORT_SYMBOL	 fs/fscache/fscache 0x00000000	__fscache_alloc_page
 EXPORT_SYMBOL	 fs/fscache/fscache 0x00000000	__fscache_attr_changed
@@ -12039,6 +12040,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpi_processor_ffh_cstate_enter
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpi_processor_ffh_cstate_probe
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpi_processor_get_performance_info
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpi_register_gsi
+EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpi_register_wakeup_handler
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpi_release_memory
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpi_scan_lock_acquire
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpi_scan_lock_release
@@ -12056,6 +12058,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpi_subsys_suspend_noirq
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpi_target_system_state
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpi_unbind_one
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpi_unregister_gsi
+EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpi_unregister_wakeup_handler
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpi_walk_dep_device_list
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpiphp_register_attention
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	acpiphp_unregister_attention
