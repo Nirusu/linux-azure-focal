@@ -27,6 +27,8 @@
 
 #include <asm/mshyperv.h>
 
+#include <asm/mshyperv.h>
+
 #define CREATE_TRACE_POINTS
 #include "hv_trace_balloon.h"
 
