@@ -2998,7 +2998,7 @@ EXPORT_SYMBOL	 net/rxrpc/rxrpc 0x00000000	rxrpc_kernel_end_call
 EXPORT_SYMBOL	 net/rxrpc/rxrpc 0x00000000	rxrpc_kernel_get_epoch
 EXPORT_SYMBOL	 net/rxrpc/rxrpc 0x00000000	rxrpc_kernel_get_peer
 EXPORT_SYMBOL	 net/rxrpc/rxrpc 0x00000000	rxrpc_kernel_get_reply_time
-EXPORT_SYMBOL	 net/rxrpc/rxrpc 0x00000000	rxrpc_kernel_get_rtt
+EXPORT_SYMBOL	 net/rxrpc/rxrpc 0x00000000	rxrpc_kernel_get_srtt
 EXPORT_SYMBOL	 net/rxrpc/rxrpc 0x00000000	rxrpc_kernel_new_call_notification
 EXPORT_SYMBOL	 net/rxrpc/rxrpc 0x00000000	rxrpc_kernel_recv_data
 EXPORT_SYMBOL	 net/rxrpc/rxrpc 0x00000000	rxrpc_kernel_send_data
@@ -11496,6 +11496,7 @@ EXPORT_SYMBOL_GPL	 net/sunrpc/sunrpc 0x00000000	write_bytes_to_xdr_buf
 EXPORT_SYMBOL_GPL	 net/sunrpc/sunrpc 0x00000000	xdr_buf_from_iov
 EXPORT_SYMBOL_GPL	 net/sunrpc/sunrpc 0x00000000	xdr_buf_read_mic
 EXPORT_SYMBOL_GPL	 net/sunrpc/sunrpc 0x00000000	xdr_buf_subsegment
+EXPORT_SYMBOL_GPL	 net/sunrpc/sunrpc 0x00000000	xdr_buf_trim
 EXPORT_SYMBOL_GPL	 net/sunrpc/sunrpc 0x00000000	xdr_commit_encode
 EXPORT_SYMBOL_GPL	 net/sunrpc/sunrpc 0x00000000	xdr_decode_array2
 EXPORT_SYMBOL_GPL	 net/sunrpc/sunrpc 0x00000000	xdr_decode_netobj
@@ -14096,6 +14097,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_free_hyperv_page
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_get_tsc_page
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_hypercall_pg
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_init_clocksource
+EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_is_hibernation_supported
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_is_hyperv_initialized
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_max_vp_index
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_pkt_iter_close
@@ -14114,7 +14116,8 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_stimer_alloc
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_stimer_cleanup
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_stimer_free
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_stimer_global_cleanup
-EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_stimer_init
+EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_stimer_legacy_cleanup
+EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_stimer_legacy_init
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_vp_assist_page
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hv_vp_index
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	hvc_alloc
