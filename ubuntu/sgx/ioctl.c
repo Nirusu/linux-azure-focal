@@ -397,7 +397,7 @@ static int sgx_encl_add_page(struct sgx_encl *encl, unsigned long src,
 		goto err_out_free;
 	}
 
-	down_read(&current->mm->mmap_sem);
+	down_read(&current->mm->mmap_lock);
 	mutex_lock(&encl->lock);
 
 	/*
@@ -439,7 +439,7 @@ static int sgx_encl_add_page(struct sgx_encl *encl, unsigned long src,
 
 	sgx_mark_page_reclaimable(encl_page->epc_page);
 	mutex_unlock(&encl->lock);
-	up_read(&current->mm->mmap_sem);
+	up_read(&current->mm->mmap_lock);
 	return ret;
 
 err_out:
@@ -449,7 +449,7 @@ err_out:
 err_out_unlock:
 	sgx_encl_shrink(encl, va_page);
 	mutex_unlock(&encl->lock);
-	up_read(&current->mm->mmap_sem);
+	up_read(&current->mm->mmap_lock);
 
 err_out_free:
 	sgx_free_page(epc_page);
