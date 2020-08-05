@@ -168,9 +168,9 @@ static bool sgx_reclaimer_age(struct sgx_epc_page *epc_page)
 		if (!mmget_not_zero(encl_mm->mm))
 			continue;
 
-		down_read(&encl_mm->mm->mmap_sem);
+		down_read(&encl_mm->mm->mmap_lock);
 		ret = !sgx_encl_test_and_clear_young(encl_mm->mm, page);
-		up_read(&encl_mm->mm->mmap_sem);
+		up_read(&encl_mm->mm->mmap_lock);
 
 #if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 0, 0) || LINUX_VERSION_CODE > KERNEL_VERSION(5, 4, 0) )
 		mmput(encl_mm->mm);
@@ -215,13 +215,13 @@ retry:
 		if (!mmget_not_zero(encl_mm->mm))
 			continue;
 
-		down_read(&encl_mm->mm->mmap_sem);
+		down_read(&encl_mm->mm->mmap_lock);
 
 		ret = sgx_encl_find(encl_mm->mm, addr, &vma);
 		if (!ret && encl == vma->vm_private_data)
 			zap_vma_ptes(vma, addr, PAGE_SIZE);
 
-		up_read(&encl_mm->mm->mmap_sem);
+		up_read(&encl_mm->mm->mmap_lock);
 
 #if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 0, 0) || LINUX_VERSION_CODE > KERNEL_VERSION(5, 4, 0) )
 		mmput(encl_mm->mm);
