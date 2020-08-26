@@ -35,6 +35,7 @@ Build-Depends:
  libnuma-dev [amd64 arm64 ppc64el s390x] <!stage1>,
  dkms <!stage1>,
  curl <!stage1>,
+ dwarves,
 Build-Depends-Indep:
  xmlto <!stage1>,
  docbook-utils <!stage1>,
