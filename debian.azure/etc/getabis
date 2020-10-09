@@ -7,6 +7,7 @@ repo_list=(
 	"http://ppa.launchpad.net/canonical-kernel-team/ppa/ubuntu/pool/main/l/linux-azure"
 	"http://ppa.launchpad.net/canonical-kernel-team/ppa/ubuntu/pool/main/l/linux-signed-azure"
 	"http://ppa.launchpad.net/canonical-kernel-team/unstable/ubuntu/pool/main/l/linux-azure"
+	"http://ppa.launchpad.net/canonical-kernel-team/bootstrap/ubuntu/pool/main/l/linux-azure"
 )
 
 package_prefixes linux-image linux-modules linux-modules-extra
