@@ -810,9 +810,11 @@ efi_main(struct efi_config *c, struct boot_params *boot_params)
 	 * address, relocate it.
 	 */
 	if (hdr->pref_address != hdr->code32_start) {
+		extern char _bss[];
 		unsigned long bzimage_addr = hdr->code32_start;
 		status = efi_relocate_kernel(sys_table, &bzimage_addr,
-					     hdr->init_size, hdr->init_size,
+					     (unsigned long)_bss - bzimage_addr,
+					     hdr->init_size,
 					     hdr->pref_address,
 					     hdr->kernel_alignment,
 					     LOAD_PHYSICAL_ADDR);
