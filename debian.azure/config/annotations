@@ -183,6 +183,9 @@ CONFIG_SATA_ZPODD                                  mark<ENFORCED> note<modules r
 CONFIG_HYPERV_IOMMU                                policy<{'amd64': 'y'}>
 CONFIG_HYPERV_IOMMU                                mark<ENFORCED> note<LP:#1826447>
 
+CONFIG_LOOPBACK_TARGET                             policy<{'amd64': 'm'}>
+CONFIG_LOOPBACK_TARGET                             mark<ENFORCED> note<LP#1791794>
+
 # Changes made to the generic kernel that are not necessary in the Azure kernel
 
 CONFIG_REGULATOR_TWL4030                           policy<{'amd64': '-'}>
