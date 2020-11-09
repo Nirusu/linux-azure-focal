@@ -541,7 +541,8 @@ int vmbus_sendpacket_pagebuffer_bounce(
 	struct vmbus_channel *channel,
 	struct vmbus_channel_packet_page_buffer *desc,
 	u32 desc_size, struct kvec *bufferlist,
-	u8 io_type, struct hv_bounce_pkt **pbounce_pkt)
+	u8 io_type, struct hv_bounce_pkt **pbounce_pkt,
+	u64 requestid)
 {
 	struct hv_bounce_pkt *bounce_pkt;
 	int ret;
@@ -555,7 +556,7 @@ int vmbus_sendpacket_pagebuffer_bounce(
 			(struct hv_page_range *)desc->range, io_type);
 	if (unlikely(!bounce_pkt))
 		return -ENOSPC;
-	ret = hv_ringbuffer_write(channel, bufferlist, 3);
+	ret = hv_ringbuffer_write(channel, bufferlist, 3, requestid);
 	if (unlikely(ret < 0))
 		hv_bounce_resources_release(channel, bounce_pkt);
 	else
@@ -569,7 +570,8 @@ int vmbus_sendpacket_mpb_desc_bounce(
 	struct vmbus_packet_mpb_array *desc,
 	u32 desc_size,
 	struct kvec *bufferlist,
-	u8 io_type, struct hv_bounce_pkt **pbounce_pkt)
+	u8 io_type, struct hv_bounce_pkt **pbounce_pkt,
+	u64 requestid)
 {
 	struct hv_bounce_pkt *bounce_pkt;
 	struct vmbus_packet_mpb_array *desc_bounce;
@@ -598,7 +600,7 @@ int vmbus_sendpacket_mpb_desc_bounce(
 	if (unlikely(!bounce_pkt))
 		goto free;
 	bufferlist[0].iov_base = desc_bounce;
-	ret = hv_ringbuffer_write(channel, bufferlist, 3);
+	ret = hv_ringbuffer_write(channel, bufferlist, 3, requestid);
 free:
 	kfree(desc_bounce);
 	if (unlikely(ret < 0))
