@@ -88,13 +88,15 @@ extern int vmbus_sendpacket_pagebuffer_bounce(struct vmbus_channel *channel,
 	struct vmbus_channel_packet_page_buffer *desc,
 	u32 desc_size,
 	struct kvec *bufferlist,
-        u8 io_type, struct hv_bounce_pkt **bounce_pkt);
+	u8 io_type, struct hv_bounce_pkt **bounce_pkt,
+	u64 requestid);
 
 extern int vmbus_sendpacket_mpb_desc_bounce(struct vmbus_channel *channel,
 	struct vmbus_packet_mpb_array *desc,
 	u32 desc_size,
 	struct kvec *bufferlist,
-	u8 io_type, struct hv_bounce_pkt **bounce_pkt);
+	u8 io_type, struct hv_bounce_pkt **bounce_pkt,
+	u64 requestid);
 
 extern void hv_pkt_bounce(struct vmbus_channel *channel,
 			  struct hv_bounce_pkt *bounce_pkt);
@@ -230,7 +232,8 @@ int hv_ringbuffer_init(struct hv_ring_buffer_info *ring_info,
 void hv_ringbuffer_cleanup(struct hv_ring_buffer_info *ring_info);
 
 int hv_ringbuffer_write(struct vmbus_channel *channel,
-			const struct kvec *kv_list, u32 kv_count);
+			const struct kvec *kv_list, u32 kv_count,
+			u64 requestid);
 
 int hv_ringbuffer_read(struct vmbus_channel *channel,
 		       void *buffer, u32 buflen, u32 *buffer_actual_len,
