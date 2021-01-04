@@ -263,4 +263,9 @@ static inline int hyperv_flush_guest_mapping_range(u64 as,
 
 #include <asm-generic/mshyperv.h>
 
+static inline bool hv_isolation_type_snp(void)
+{
+	return (hv_get_isolation_type() & HV_ISOLATION_TYPE_SNP);
+}
+
 #endif
