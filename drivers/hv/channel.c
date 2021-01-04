@@ -41,7 +41,7 @@ static void vmbus_set_event(struct vmbus_channel *channel)
 		hv_do_fast_hypercall8(HVCALL_SIGNAL_EVENT, channel->sig_event);
 }
 
-static unsigned long virt_to_hvpfn(void *addr)
+unsigned long virt_to_hvpfn(void *addr)
 {
 	phys_addr_t paddr;
 
@@ -53,6 +53,7 @@ static unsigned long virt_to_hvpfn(void *addr)
 
 	return  paddr >> PAGE_SHIFT;
 }
+EXPORT_SYMBOL_GPL(virt_to_hvpfn);
 
 /*
  * vmbus_setevent- Trigger an event notification on the specified
