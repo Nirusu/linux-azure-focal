@@ -299,6 +299,9 @@ enum hv_isolation_type {
 /* TSC invariant control */
 #define HV_X64_MSR_TSC_INVARIANT_CONTROL	0x40000118
 
+/* GHCB base address */
+#define HV_X64_MSR_GHCB_ADDR			0xc0010130
+
 /* Hyper-V GPA map flags */
 #define HV_MAP_GPA_PERMISSIONS_NONE		0x0
 #define HV_MAP_GPA_READABLE			0x1
