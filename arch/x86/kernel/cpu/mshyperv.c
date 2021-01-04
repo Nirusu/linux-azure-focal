@@ -229,6 +229,8 @@ static void __init ms_hyperv_init_platform(void)
 	ms_hyperv.features_b = cpuid_ebx(HYPERV_CPUID_FEATURES);
 	ms_hyperv.misc_features = cpuid_edx(HYPERV_CPUID_FEATURES);
 	ms_hyperv.hints    = cpuid_eax(HYPERV_CPUID_ENLIGHTMENT_INFO);
+	ms_hyperv.shared_gpa_boundary =
+		(u64)1 << ms_hyperv.shared_gpa_boundary_bits;
 
 	pr_info("Hyper-V: features 0x%x, hints 0x%x, misc 0x%x\n",
 		ms_hyperv.features, ms_hyperv.hints, ms_hyperv.misc_features);
