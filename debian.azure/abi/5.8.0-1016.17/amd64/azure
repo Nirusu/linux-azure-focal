@@ -12634,7 +12634,6 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	__lock_page_killable
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	__mdiobus_modify_changed
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	__memcat_p
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	__memcpy_flushcache
-EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	__memcpy_mcsafe
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	__mmdrop
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	__mmu_notifier_register
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	__mnt_drop_write
@@ -12810,7 +12809,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	__xas_next
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	__xas_prev
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	__xdp_release_frame
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	_copy_from_iter_flushcache
-EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	_copy_to_iter_mcsafe
+EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	_copy_mc_to_iter
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	access_process_vm
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	account_locked_vm
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	ack_all_badblocks
@@ -13582,6 +13581,8 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	context_tracking_key
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	copy_from_kernel_nofault
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	copy_from_user_nmi
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	copy_from_user_nofault
+EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	copy_mc_fragile
+EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	copy_mc_to_kernel
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	copy_reserved_iova
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	copy_to_user_nofault
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	cpci_hp_register_bus
@@ -15663,7 +15664,6 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	mce_register_injector_chain
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	mce_unregister_decode_chain
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	mce_unregister_injector_chain
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	mce_usable_address
-EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	mcsafe_key
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	mctrl_gpio_disable_ms
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	mctrl_gpio_enable_ms
 EXPORT_SYMBOL_GPL	 vmlinux 0x00000000	mctrl_gpio_free
