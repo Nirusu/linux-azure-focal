@@ -23,7 +23,10 @@ CONFIG_INFINIBAND_IPOIB                            policy<{'amd64': 'm'}>
 CONFIG_INFINIBAND_IPOIB                            mark<ENFORCED> note<LP:#1837397>
 
 CONFIG_BLK_DEV_NVME                                policy<{'amd64': 'y'}>
-CONFIG_BLK_DEV_NVME                                mark<ENFORCED> note<LP:#1793386>
+CONFIG_BLK_DEV_NVME                                mark<ENFORCED> note<LP:#1793386> note<LP:#1908571>
+
+CONFIG_PCI_HYPERV                                  policy<{'amd64': 'y'}>
+CONFIG_PCI_HYPERV                                  mark<ENFORCED> note<LP:#1908571>
 
 CONFIG_EDAC_DECODE_MCE                             policy<{'amd64': 'y'}>
 CONFIG_EDAC_DECODE_MCE                             mark<ENFORCED> note<LP:#1793386>
