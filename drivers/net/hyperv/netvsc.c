@@ -337,7 +337,7 @@ static int netvsc_init_buf(struct hv_device *device,
 	unsigned int buf_size;
 	unsigned long vaddr;
 	size_t map_words;
-	int ret = 0, i;
+	int i, ret = 0;
 
 	/* Get receive buffer area. */
 	buf_size = device_info->recv_sections * device_info->recv_section_size;
@@ -452,6 +452,16 @@ static int netvsc_init_buf(struct hv_device *device,
 			   net_device->recv_section_size);
 		ret = -EINVAL;
 		goto cleanup;
+	}
+
+	for (i = 0; i < VRSS_CHANNEL_MAX; i++) {
+		struct netvsc_channel *nvchan = &net_device->chan_table[i];
+
+		nvchan->recv_buf = kzalloc(net_device->recv_section_size, GFP_KERNEL);
+		if (nvchan->recv_buf == NULL) {
+			ret = -ENOMEM;
+			goto cleanup;
+		}
 	}
 
 	/* Setup receive completion ring.
@@ -1611,12 +1621,6 @@ struct netvsc_device *netvsc_device_add(struct hv_device *device,
 
 	for (i = 0; i < VRSS_CHANNEL_MAX; i++) {
 		struct netvsc_channel *nvchan = &net_device->chan_table[i];
-
-		nvchan->recv_buf = kzalloc(device_info->recv_section_size, GFP_KERNEL);
-		if (nvchan->recv_buf == NULL) {
-			ret = -ENOMEM;
-			goto cleanup2;
-		}
 
 		nvchan->channel = device->channel;
 		nvchan->net_device = net_device;
