@@ -242,7 +242,7 @@ cifs_reconnect(struct TCP_Server_Info *server)
 	server->max_read = 0;
 
 	cifs_dbg(FYI, "Mark tcp session as need reconnect\n");
-	trace_smb3_reconnect(server->CurrentMid, server->hostname);
+	trace_smb3_reconnect(server->CurrentMid, server->conn_id, server->hostname);
 
 	/* before reconnecting the tcp session, mark the smb session (uid)
 		and the tid bad so they are not used until reconnected */
@@ -845,7 +845,7 @@ static void
 smb2_add_credits_from_hdr(char *buffer, struct TCP_Server_Info *server)
 {
 	struct smb2_sync_hdr *shdr = (struct smb2_sync_hdr *)buffer;
-	int scredits = server->credits;
+	int scredits, in_flight;
 
 	/*
 	 * SMB1 does not use credits.
@@ -856,12 +856,14 @@ smb2_add_credits_from_hdr(char *buffer, struct TCP_Server_Info *server)
 	if (shdr->CreditRequest) {
 		spin_lock(&server->req_lock);
 		server->credits += le16_to_cpu(shdr->CreditRequest);
+		scredits = server->credits;
+		in_flight = server->in_flight;
 		spin_unlock(&server->req_lock);
 		wake_up(&server->request_q);
 
 		trace_smb3_add_credits(server->CurrentMid,
-				server->hostname, scredits,
-				le16_to_cpu(shdr->CreditRequest));
+				server->conn_id, server->hostname, scredits,
+				le16_to_cpu(shdr->CreditRequest), in_flight);
 		cifs_server_dbg(FYI, "%s: added %u credits total=%d\n",
 				__func__, le16_to_cpu(shdr->CreditRequest),
 				scredits);
@@ -1327,6 +1329,7 @@ cifs_get_tcp_session(struct smb3_fs_context *ctx)
 	tcp_ses->vals = ctx->vals;
 	cifs_set_net_ns(tcp_ses, get_net(current->nsproxy->net_ns));
 
+	tcp_ses->conn_id = atomic_inc_return(&tcpSesNextId);
 	tcp_ses->noblockcnt = ctx->rootfs;
 	tcp_ses->noblocksnd = ctx->noblocksnd || ctx->rootfs;
 	tcp_ses->noautotune = ctx->noautotune;
