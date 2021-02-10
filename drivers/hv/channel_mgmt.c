@@ -510,6 +510,8 @@ static void vmbus_add_channel_work(struct work_struct *work)
 		if (vmbus_add_channel_kobj(dev, newchannel))
 			goto err_deq_chan;
 
+		hv_init_channel_ivm(newchannel);
+
 		if (primary_channel->sc_creation_callback != NULL)
 			primary_channel->sc_creation_callback(newchannel);
 
@@ -544,7 +546,9 @@ static void vmbus_add_channel_work(struct work_struct *work)
 
 	newchannel->probe_done = true;
 
-	hv_init_channel_ivm(newchannel);
+	if (hv_init_channel_ivm(newchannel))
+		goto err_deq_chan;
+
 	return;
 
 err_deq_chan:
