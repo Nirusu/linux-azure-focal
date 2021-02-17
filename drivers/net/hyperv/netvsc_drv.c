@@ -2484,7 +2484,7 @@ static int netvsc_probe(struct hv_device *dev,
 	}
 
 	ret = hv_bounce_resources_reserve(dev->channel,
-			PAGE_SIZE * 64);
+			4 * PAGE_SIZE * 1024);
 	if (ret < 0)
 		return ret;
 
