@@ -419,7 +419,6 @@ static bool __init hv_init_tsc_clocksource(void)
 	tsc_msr = tsc_msr | 0x1 | (u64)phys_addr;
 	hv_set_register(HV_REGISTER_REFERENCE_TSC, tsc_msr);
 
-	hv_set_clocksource_vdso(hyperv_cs_tsc);
 	clocksource_register_hz(&hyperv_cs_tsc, NSEC_PER_SEC/100);
 
 	hv_sched_clock_offset = hyperv_cs->read(hyperv_cs);
