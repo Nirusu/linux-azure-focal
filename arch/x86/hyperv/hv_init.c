@@ -386,7 +386,7 @@ void __init hyperv_init(void)
 	 * Ignore any errors in setting up stimer clockevents
 	 * as we can run with the LAPIC timer as a fallback.
 	 */
-	(void)hv_stimer_alloc();
+	(void)hv_stimer_alloc(false);
 
 	hv_apic_init();
 
