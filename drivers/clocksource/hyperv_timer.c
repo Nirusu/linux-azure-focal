@@ -302,14 +302,6 @@ EXPORT_SYMBOL_GPL(hv_stimer_global_cleanup);
  * the other that uses the TSC reference page feature as defined in the
  * TLFS.  The MSR version is for compatibility with old versions of
  * Hyper-V and 32-bit x86.  The TSC reference page version is preferred.
- *
- * The Hyper-V clocksource ratings of 250 are chosen to be below the
- * TSC clocksource rating of 300.  In configurations where Hyper-V offers
- * an InvariantTSC, the TSC is not marked "unstable", so the TSC clocksource
- * is available and preferred.  With the higher rating, it will be the
- * default.  On older hardware and Hyper-V versions, the TSC is marked
- * "unstable", so no TSC clocksource is created and the selected Hyper-V
- * clocksource will be the default.
  */
 
 struct clocksource *hyperv_cs;
@@ -364,7 +356,7 @@ static void resume_hv_clock_tsc(struct clocksource *arg)
 
 static struct clocksource hyperv_cs_tsc = {
 	.name	= "hyperv_clocksource_tsc_page",
-	.rating	= 250,
+	.rating	= 500,
 	.read	= read_hv_clock_tsc,
 	.mask	= CLOCKSOURCE_MASK(64),
 	.flags	= CLOCK_SOURCE_IS_CONTINUOUS,
@@ -390,7 +382,7 @@ static u64 read_hv_sched_clock_msr(void)
 
 static struct clocksource hyperv_cs_msr = {
 	.name	= "hyperv_clocksource_msr",
-	.rating	= 250,
+	.rating	= 500,
 	.read	= read_hv_clock_msr,
 	.mask	= CLOCKSOURCE_MASK(64),
 	.flags	= CLOCK_SOURCE_IS_CONTINUOUS,
@@ -429,7 +421,19 @@ static bool __init hv_init_tsc_clocksource(void)
 		return false;
 
 	hyperv_cs = &hyperv_cs_tsc;
-	phys_addr = virt_to_phys(&tsc_pg);
+	phys_addr = virt_to_phys(hv_get_tsc_page());
+
+	/*
+	 * If Hyper-V offers TSC_INVARIANT, then the virtualized TSC correctly
+	 * handles frequency and offset changes due to live migration,
+	 * pause/resume, and other VM management operations.  So lower the
+	 * Hyper-V Reference TSC rating, causing the generic TSC to be used.
+	 * TSC_INVARIANT is not offered on ARM64, so the Hyper-V Reference
+	 * TSC will be preferred over the virtualized ARM64 arch counter.
+	 */
+	if (ms_hyperv.features & HV_ACCESS_TSC_INVARIANT)
+		hyperv_cs_tsc.rating = 250;
+
 
 	/*
 	 * The Hyper-V TLFS specifies to preserve the value of reserved
