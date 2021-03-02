@@ -26,8 +26,6 @@ static inline u64 hv_get_register(unsigned int reg)
 	return value;
 }
 
-#define hv_set_clocksource_vdso(val) \
-	((val).archdata.vclock_mode = VCLOCK_HVCLOCK)
 #define hv_get_raw_timer() rdtsc_ordered()
 
 void hyperv_callback_vector(void);
