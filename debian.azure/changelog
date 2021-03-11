@@ -1,3 +1,9 @@
+linux-azure (5.11.0-1000.0) hirsute; urgency=medium
+
+  * Empty entry.
+
+ -- Paolo Pisati <paolo.pisati@canonical.com>  Thu, 11 Mar 2021 09:41:16 +0100
+
 linux-azure (5.8.0-1024.26) groovy; urgency=medium
 
   * groovy/linux-azure: 5.8.0-1024.26 -proposed tracker (LP: #1916130)
