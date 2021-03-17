@@ -151,6 +151,7 @@ arptable_filter
 as370-hwmon
 asb100
 asc7621
+ashmem_linux
 aspeed-pwm-tacho
 aspeed-video
 ast
@@ -219,6 +220,7 @@ bfa
 bfq
 bfs
 bh1770glc
+binder_linux
 binfmt_misc
 blake2b_generic
 blake2s-x86_64
