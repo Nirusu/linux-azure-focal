@@ -262,3 +262,7 @@ CONFIG_SND_SOC_AMD_RENOIR_MACH                     note<Unnecessary for Azure>
 
 CONFIG_BT_HS                                       policy<{'amd64': '-'}>
 CONFIG_BT_HS                                       mark<ENFORCED> note<https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-00435.html>
+
+# Menu: Security options
+CONFIG_SECURITY_DMESG_RESTRICT                    policy<{'amd64': 'n', 'arm64': 'n', 'armhf': 'n', 'ppc64el': 'n', 's390x': 'n'}>
+CONFIG_SECURITY_DMESG_RESTRICT                    mark<ENFORCED>
