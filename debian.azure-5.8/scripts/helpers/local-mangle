@@ -5,6 +5,15 @@
 # Do not enforce DMESG_RESTRICT in focal
 sed -i 's/CONFIG_SECURITY_DMESG_RESTRICT=y/# CONFIG_SECURITY_DMESG_RESTRICT is not set/' ${DEBIAN}/config/config.common.ubuntu
 sed -i "s/CONFIG_SECURITY_DMESG_RESTRICT                    policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'ppc64el': 'y', 's390x': 'y'}>/CONFIG_SECURITY_DMESG_RESTRICT                    policy<{'amd64': 'n', 'arm64': 'n', 'armhf': 'n', 'ppc64el': 'n', 's390x': 'n'}>/" ${DEBIAN}/config/annotations
+# The base kernel might not have above annotation at all
+if ! `grep -qF 'CONFIG_SECURITY_DMESG_RESTRICT ' ${DEBIAN}/config/annotations` ; then
+	cat <<EOD >>${DEBIAN}/config/annotations
+
+# Menu: Security options
+CONFIG_SECURITY_DMESG_RESTRICT                    policy<{'amd64': 'n', 'arm64': 'n', 'armhf': 'n', 'ppc64el': 'n', 's390x': 'n'}>
+CONFIG_SECURITY_DMESG_RESTRICT                    mark<ENFORCED>
+EOD
+fi
 
 # Disable DEBUG_INFO_BTF (pahole version is too old in focal)
 sed -i 's/CONFIG_DEBUG_INFO_BTF=y/# CONFIG_DEBUG_INFO_BTF is not set/' ${DEBIAN}/config/config.common.ubuntu
