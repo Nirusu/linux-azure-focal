@@ -1,3 +1,9 @@
+linux-azure-5.8 (5.8.0-1026.28~20.04.1) focal; urgency=medium
+
+  * Empty entry
+
+ -- Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>  Mon, 29 Mar 2021 10:38:34 +0200
+
 linux-azure (5.8.0-1026.28) groovy; urgency=medium
 
   [ Ubuntu: 5.8.0-48.54 ]
