@@ -1,13 +1,13 @@
 repo_list=(
-	"http://ppa.launchpad.net/mhcerri/azure/ubuntu/pool/main/l/linux-azure"
-	"http://archive.ubuntu.com/ubuntu/pool/main/l/linux-azure"
-	"http://ports.ubuntu.com/ubuntu-ports/pool/main/l/linux-azure"
-	"http://archive.ubuntu.com/ubuntu/pool/universe/l/linux-azure"
-	"http://ports.ubuntu.com/ubuntu-ports/pool/universe/l/linux-azure"
-	"http://ppa.launchpad.net/canonical-kernel-team/ppa/ubuntu/pool/main/l/linux-azure"
-	"http://ppa.launchpad.net/canonical-kernel-team/ppa/ubuntu/pool/main/l/linux-signed-azure"
-	"http://ppa.launchpad.net/canonical-kernel-team/unstable/ubuntu/pool/main/l/linux-azure"
-	"http://ppa.launchpad.net/canonical-kernel-team/bootstrap/ubuntu/pool/main/l/linux-azure"
+	"http://ppa.launchpad.net/mhcerri/azure/ubuntu/pool/main/l/linux-azure-5.8"
+	"http://archive.ubuntu.com/ubuntu/pool/main/l/linux-azure-5.8"
+	"http://ports.ubuntu.com/ubuntu-ports/pool/main/l/linux-azure-5.8"
+	"http://archive.ubuntu.com/ubuntu/pool/universe/l/linux-azure-5.8"
+	"http://ports.ubuntu.com/ubuntu-ports/pool/universe/l/linux-azure-5.8"
+	"http://ppa.launchpad.net/canonical-kernel-team/ppa/ubuntu/pool/main/l/linux-azure-5.8"
+	"http://ppa.launchpad.net/canonical-kernel-team/ppa/ubuntu/pool/main/l/linux-signed-azure-5.8"
+	"http://ppa.launchpad.net/canonical-kernel-team/unstable/ubuntu/pool/main/l/linux-azure-5.8"
+	"http://ppa.launchpad.net/canonical-kernel-team/bootstrap/ubuntu/pool/main/l/linux-azure-5.8"
 )
 
 package_prefixes linux-image linux-modules linux-modules-extra
