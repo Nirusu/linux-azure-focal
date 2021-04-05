@@ -4,6 +4,9 @@
 
 include "../../debian.master/config/annotations"
 
+CONFIG_FPGA_MGR_XILINX_SPI                         mark<ENFORCED> note<LP:#1922582>
+CONFIG_FPGA_MGR_XILINX_SPI                         policy<{'amd64': 'm'}>
+
 CONFIG_ANDROID                                     policy<{'amd64': 'y'}>
 CONFIG_ANDROID                                     mark<ENFORCED> note<LP:#1914568>
 
