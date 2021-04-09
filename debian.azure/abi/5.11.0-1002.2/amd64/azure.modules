@@ -125,7 +125,6 @@ amdgpu
 amdtee
 amlogic-gxl-crypto
 ansi_cprng
-anubis
 apds9802als
 apds990x
 apex
@@ -137,7 +136,6 @@ applicom
 ar9331
 arc-rawmode
 arc-rimi
-arc4
 arc_ps2
 arc_uart
 arcmsr
@@ -151,6 +149,7 @@ arptable_filter
 as370-hwmon
 asb100
 asc7621
+ashmem_linux
 aspeed-pwm-tacho
 aspeed-video
 ast
@@ -182,7 +181,6 @@ atomisp_gmin_platform
 atp
 atp870u
 atxp1
-aufs
 auth_rpcgss
 authenc
 authencesn
@@ -199,6 +197,7 @@ b53_mmap
 b53_serdes
 b53_spi
 b53_srab
+ba431-rng
 bareudp
 batman-adv
 bcache
@@ -219,6 +218,7 @@ bfa
 bfq
 bfs
 bh1770glc
+binder_linux
 binfmt_misc
 blake2b_generic
 blake2s-x86_64
@@ -286,6 +286,8 @@ cfbfillrect
 cfbimgblt
 cfg80211
 ch
+ch_ipsec
+ch_ktls
 chacha-x86_64
 chacha20poly1305
 chacha_generic
@@ -378,7 +380,6 @@ des3_ede-x86_64
 des_generic
 diag
 dl2k
-dlci
 dlink-dir685-touchkeys
 dlm
 dm-bio-prison
@@ -393,6 +394,7 @@ dm-era
 dm-flakey
 dm-historical-service-time
 dm-integrity
+dm-io-affinity
 dm-log
 dm-log-userspace
 dm-log-writes
@@ -420,6 +422,7 @@ dp83822
 dp83869
 dp83tc811
 dpt_i2o
+dptf_pch_fivr
 dptf_power
 drbd
 drivetemp
@@ -657,6 +660,7 @@ hamachi
 hangcheck-timer
 hci
 hd44780
+hd44780_common
 hdlc
 hdlc_cisco
 hdlc_fr
@@ -807,7 +811,6 @@ ina2xx
 ina3221
 inet_diag
 initio
-input-polldev
 intel-cstate
 intel-hid
 intel-ish-ipc
@@ -839,7 +842,6 @@ intel_qat
 intel_quark_i2c_gpio
 intel_scu_ipcutil
 intel_scu_pltdrv
-intel_sgx
 intel_soc_dts_iosf
 intel_soc_dts_thermal
 intel_soc_pmic_bxtwc
@@ -984,7 +986,6 @@ k8temp
 kafs
 kcm
 keywrap
-khazad
 kheaders
 kmem
 kpc2000
@@ -1164,7 +1165,6 @@ mdio-bcm-unimac
 mdio-i2c
 mdio-mscc-miim
 mdio-mvusb
-mdio-xpcs
 megaraid
 megaraid_mbox
 megaraid_mm
@@ -1223,13 +1223,13 @@ mpls_router
 mpoa
 mpt3sas
 mptbase
+mptcp_diag
 mptctl
 mptfc
 mptsas
 mptscsih
 mptspi
 mrp
-mscc_ocelot_common
 msdos
 msp3400
 msr
@@ -1327,6 +1327,7 @@ nfs
 nfs_acl
 nfs_layout_flexfiles
 nfs_layout_nfsv41_files
+nfs_ssc
 nfsd
 nfsv2
 nfsv3
@@ -1363,6 +1364,7 @@ nft_reject_bridge
 nft_reject_inet
 nft_reject_ipv4
 nft_reject_ipv6
+nft_reject_netdev
 nft_socket
 nft_synproxy
 nft_tproxy
@@ -1539,14 +1541,13 @@ peak_pciefd
 peaq-wmi
 phantom
 phonet
-phy-intel-emmc
+phy-intel-lgm-emmc
 phylink
 pi433
 pinctrl-cannonlake
 pinctrl-cedarfork
 pinctrl-denverton
 pinctrl-icelake
-pinctrl-intel
 pinctrl-jasperlake
 pinctrl-lewisburg
 pinctrl-lynxpoint
@@ -1595,9 +1596,9 @@ ptp_vmw
 pulse8-cec
 punit_atom_debug
 pvpanic
+qat_4xxx
 qat_dh895xcc
 qat_dh895xccvf
-qcom-cpr
 qcom-wled
 qcom_glink
 qcom_glink_rpm
@@ -1652,7 +1653,6 @@ rc-beelink-gs1
 rc-behold
 rc-behold-columbus
 rc-budget-ci-old
-rc-cec
 rc-cinergy
 rc-cinergy-1400
 rc-core
@@ -1693,6 +1693,7 @@ rc-it913x-v1
 rc-it913x-v2
 rc-kaiomy
 rc-khadas
+rc-khamsin
 rc-kworld-315u
 rc-kworld-pc150u
 rc-kworld-plus-tv-analog
@@ -1713,6 +1714,7 @@ rc-norwood
 rc-npgtech
 rc-odroid
 rc-pctv-sedna
+rc-pine64
 rc-pinnacle-color
 rc-pinnacle-grey
 rc-pinnacle-pctv-hd
@@ -1761,7 +1763,6 @@ rc-winfast-usbii-deluxe
 rc-x96max
 rc-xbox-dvd
 rc-zx-irdec
-rcuperf
 rdc321x-southbridge
 rdma_cm
 rdma_ucm
@@ -1800,6 +1801,7 @@ rpcrdma
 rpcsec_gss_krb5
 rpmsg_char
 rpmsg_core
+rpmsg_ns
 rt5033
 rtc-ab-eoz9
 rtc-ftrtc010
@@ -1879,7 +1881,6 @@ scsi_transport_srp
 sctp
 sctp_diag
 seco-cec
-seed
 serial_ir
 serio_raw
 serpent-avx-x86_64
@@ -1924,6 +1925,7 @@ slicoss
 slim-qcom-ctrl
 slimbus
 slip
+sm2_generic
 sm3_generic
 sm4_generic
 sm501
@@ -1984,13 +1986,9 @@ stts751
 sundance
 suni
 sunrpc
-surface3-wmi
-surface3_power
 switchtec
 sym53c8xx
-synclink
 synclink_gt
-synclinkmp
 syscopyarea
 sysfillrect
 sysimgblt
@@ -2000,13 +1998,13 @@ tag_8021q
 tag_ar9331
 tag_brcm
 tag_dsa
-tag_edsa
 tag_gswip
 tag_ksz
 tag_lan9303
 tag_mtk
 tag_ocelot
 tag_qca
+tag_rtl4_a
 tag_sja1105
 tag_trailer
 tap
@@ -2039,7 +2037,6 @@ tcrypt
 tda7432
 tda9840
 tda9950
-tea
 tea6415c
 tea6420
 tee
@@ -2164,6 +2161,7 @@ virtio-gpu
 virtio-rng
 virtio_blk
 virtio_crypto
+virtio_dma_buf
 virtio_input
 virtio_mem
 virtio_net
@@ -2233,7 +2231,6 @@ wmi
 wmi-bmof
 wp512
 x25
-x25_asy
 x38_edac
 x86_pkg_temp_thermal
 x_tables
@@ -2241,6 +2238,7 @@ xcbc
 xfrm4_tunnel
 xfrm6_tunnel
 xfrm_algo
+xfrm_compat
 xfrm_interface
 xfrm_ipcomp
 xfrm_user
@@ -2250,6 +2248,7 @@ xhci-plat-hcd
 xiaomi-wmi
 xilinx_emac
 xilinx_sdfec
+xiphera-trng
 xlnx_vcu
 xor
 xr_usb_serial_common
@@ -2342,3 +2341,4 @@ zonefs
 zram
 zstd
 zunicode
+zzstd
