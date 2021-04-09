@@ -224,6 +224,9 @@ CONFIG_SND_SOC_SOF_HDA_LINK                        note<Unnecessary for Azure>
 CONFIG_SND_SOC_SOF_NOCODEC_SUPPORT                 policy<{'amd64': '-'}>
 CONFIG_SND_SOC_SOF_NOCODEC_SUPPORT                 note<Unnecessary for Azure>
 
+CONFIG_SND_SOC_SOF_HDA_ALWAYS_ENABLE_DMI_L1        policy<{'amd64': '-'}>
+CONFIG_SND_SOC_SOF_HDA_ALWAYS_ENABLE_DMI_L1        note<Unnecessary for Azure>
+
 CONFIG_NETWORK_PHY_TIMESTAMPING                    policy<{'amd64': 'n'}>
 CONFIG_NETWORK_PHY_TIMESTAMPING                    note<Unnecessary for Azure>
 
