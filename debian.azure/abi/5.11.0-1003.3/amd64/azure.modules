@@ -573,6 +573,7 @@ fm10k
 fore_200e
 fou
 fou6
+fpga-mgr
 freevxfs
 fscache
 fschmd
@@ -2246,6 +2247,7 @@ xfs
 xgene-hwmon
 xhci-plat-hcd
 xiaomi-wmi
+xilinx-spi
 xilinx_emac
 xilinx_sdfec
 xiphera-trng
