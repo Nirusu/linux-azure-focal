@@ -3764,7 +3764,6 @@ EXPORT_SYMBOL	 vmlinux 0x20568df5	security_d_instantiate
 EXPORT_SYMBOL	 vmlinux 0x2056a726	zap_page_range
 EXPORT_SYMBOL	 vmlinux 0x2058034f	__put_cred
 EXPORT_SYMBOL	 vmlinux 0x2072ee9b	request_threaded_irq
-EXPORT_SYMBOL	 vmlinux 0x20902d61	follow_pte_pmd
 EXPORT_SYMBOL	 vmlinux 0x20a1b519	acpi_resource_to_address64
 EXPORT_SYMBOL	 vmlinux 0x20a789ac	irq_set_chip_data
 EXPORT_SYMBOL	 vmlinux 0x20af5bfb	send_sig_mceerr
@@ -13649,6 +13648,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x5fbd085c	acpi_subsys_suspend_noirq
 EXPORT_SYMBOL_GPL	 vmlinux 0x5fc3da12	vmbus_sendpacket_pagebuffer
 EXPORT_SYMBOL_GPL	 vmlinux 0x5fccc780	sock_diag_destroy
 EXPORT_SYMBOL_GPL	 vmlinux 0x5fd65b58	thermal_zone_bind_cooling_device
+EXPORT_SYMBOL_GPL	 vmlinux 0x5fd801de	follow_pte
 EXPORT_SYMBOL_GPL	 vmlinux 0x5fdfa2c1	amd_pmu_enable_virt
 EXPORT_SYMBOL_GPL	 vmlinux 0x5fea9db8	dev_queue_xmit_nit
 EXPORT_SYMBOL_GPL	 vmlinux 0x5ffc692f	relay_file_operations
@@ -14318,7 +14318,6 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x7e110f70	skb_consume_udp
 EXPORT_SYMBOL_GPL	 vmlinux 0x7e173e52	tty_buffer_space_avail
 EXPORT_SYMBOL_GPL	 vmlinux 0x7e1e6cec	power_supply_register
 EXPORT_SYMBOL_GPL	 vmlinux 0x7e42ddb6	arizona_request_irq
-EXPORT_SYMBOL_GPL	 vmlinux 0x7e57ae0f	xhci_init_driver
 EXPORT_SYMBOL_GPL	 vmlinux 0x7e5a6309	rio_release_inb_mbox
 EXPORT_SYMBOL_GPL	 vmlinux 0x7e5db80b	pstore_name_to_type
 EXPORT_SYMBOL_GPL	 vmlinux 0x7e64181d	usb_calc_bus_time
@@ -15508,6 +15507,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0xb72cc9bb	sched_trace_cfs_rq_cpu
 EXPORT_SYMBOL_GPL	 vmlinux 0xb7329c06	clk_set_phase
 EXPORT_SYMBOL_GPL	 vmlinux 0xb73713d7	nvmem_add_cell_lookups
 EXPORT_SYMBOL_GPL	 vmlinux 0xb75041d1	hv_stimer_legacy_init
+EXPORT_SYMBOL_GPL	 vmlinux 0xb761318b	sev_active
 EXPORT_SYMBOL_GPL	 vmlinux 0xb7717071	vfs_truncate
 EXPORT_SYMBOL_GPL	 vmlinux 0xb7911b77	regcache_cache_only
 EXPORT_SYMBOL_GPL	 vmlinux 0xb7c2bdb9	page_cache_async_readahead
@@ -15648,6 +15648,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0xbd971428	ip6_route_output_flags
 EXPORT_SYMBOL_GPL	 vmlinux 0xbd99741f	ata_bmdma_port_start32
 EXPORT_SYMBOL_GPL	 vmlinux 0xbdc69621	crypto_unregister_rng
 EXPORT_SYMBOL_GPL	 vmlinux 0xbdda2015	wm831x_reg_unlock
+EXPORT_SYMBOL_GPL	 vmlinux 0xbddfb7c8	xhci_init_driver
 EXPORT_SYMBOL_GPL	 vmlinux 0xbde29f7d	skcipher_walk_virt
 EXPORT_SYMBOL_GPL	 vmlinux 0xbde3a7fb	fwnode_get_parent
 EXPORT_SYMBOL_GPL	 vmlinux 0xbdfe47e8	__module_address
