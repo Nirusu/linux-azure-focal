@@ -268,3 +268,6 @@ CONFIG_BT_HS                                       mark<ENFORCED> note<https://w
 
 CONFIG_DRM_BOCHS                                   policy<{'amd64': 'n'}>
 CONFIG_DRM_BOCHS                                   note<Unnecessary for Azure>
+
+CONFIG_SND_SOC_SOF_HDA_ALWAYS_ENABLE_DMI_L1        policy<{'amd64': '-'}>
+CONFIG_SND_SOC_SOF_HDA_ALWAYS_ENABLE_DMI_L1        mark<ENFORCED> note<LP:1919930> note<this config is not available in linux-azure>
