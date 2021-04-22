@@ -8,6 +8,7 @@
 
 #include <net/checksum.h>
 #include <net/ip6_checksum.h>
+#include <linux/version.h>
 
 #include "mana.h"
 
@@ -1061,7 +1062,7 @@ static void mana_process_rx_cqe(struct mana_rxq *rxq, struct mana_cq *cq,
 static void mana_poll_rx_cq(struct mana_cq *cq)
 {
 	struct gdma_comp *comp = cq->gdma_comp_buf;
-	u32 comp_read, i;
+	int comp_read, i;
 
 	comp_read = mana_gd_poll_cq(cq->gdma_cq, comp, CQE_POLLING_BUFFER);
 	WARN_ON_ONCE(comp_read > CQE_POLLING_BUFFER);
@@ -1787,8 +1788,9 @@ static int mana_probe_port(struct mana_context *ac, int port_idx,
 	if (err)
 		goto free_net;
 
-	netdev_lockdep_set_classes(ndev);
-
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,8,6)
+    netdev_lockdep_set_classes(ndev);
+#endif
 	ndev->hw_features = NETIF_F_SG | NETIF_F_IP_CSUM | NETIF_F_IPV6_CSUM;
 	ndev->hw_features |= NETIF_F_RXCSUM;
 	ndev->hw_features |= NETIF_F_TSO | NETIF_F_TSO6;
