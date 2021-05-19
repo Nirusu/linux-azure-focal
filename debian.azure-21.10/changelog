@@ -1,3 +1,9 @@
+linux-azure (5.11.0-1006.6) impish; urgency=medium
+
+  * Empty entry
+
+ -- Paolo Pisati <paolo.pisati@canonical.com>  Wed, 19 May 2021 11:38:35 +0200
+
 linux-azure (5.11.0-1006.6) hirsute; urgency=medium
 
   * hirsute/linux-azure: 5.11.0-1006.6 -proposed tracker (LP: #1927564)
