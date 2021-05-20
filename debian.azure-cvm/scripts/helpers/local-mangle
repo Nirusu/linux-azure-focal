@@ -2,4 +2,29 @@
 
 # shellcheck disable=SC1091
 . debian/debian.env
+flavour="${DEBIAN#*.}"
 
+# Rename files after copy-files has synchronized them with the base
+# kernel.
+
+# Rename the config files
+while read -r orig; do
+	dest="${orig%.*}.${flavour}"
+	[ "$orig" = "$dest" ] && continue
+	mv "$orig" "$dest"
+done < <(find "${DEBIAN}/config/" -name 'config.flavour.*')
+
+# Rename the inclusion list
+while read -r orig; do
+	dir=$(dirname "$orig")
+	file=$(basename "$orig")
+	dest="${dir}/${flavour}.${file#*.}"
+	[ "$orig" = "$dest" ] && continue
+	mv "$orig" "$dest"
+done < <(find "${DEBIAN}/control.d/" -name '*.inclusion-list')
+
+# Update the kernel flavour
+sed -i 's/^\(flavours\s*=\s*\).*/\1'"${flavour}"'/' "${DEBIAN}/rules.d/"*.mk
+
+# It's not necessary to update "${DEBIAN}/rules.d/*.mk" because
+# hooks.mk can be used to override them.
