@@ -28,3 +28,38 @@ sed -i 's/^\(flavours\s*=\s*\).*/\1'"${flavour}"'/' "${DEBIAN}/rules.d/"*.mk
 
 # It's not necessary to update "${DEBIAN}/rules.d/*.mk" because
 # hooks.mk can be used to override them.
+
+# Update config options and the annotations file.
+configs=(
+)
+
+# Load archs supported in the configs
+archs=
+# shellcheck disable=SC2034
+variant=
+# shellcheck disable=SC1090
+. "${DEBIAN}/etc/kernelconfig"
+
+# FIPS configs should be in the common config file
+config_file="${DEBIAN}/config/config.common.ubuntu"
+annot_file="${DEBIAN}/config/annotations"
+for config in "${configs[@]}"; do
+	# Split key and value
+	key="${config%%=*}"
+	val="${config#*=}"
+	# Remove any existing config
+	sed -i -e "/^${key}=/d" -e "/^# ${key} /d" "$config_file"
+	# Append desirable config value
+	echo "${key}=${val:-n}" >> "$config_file"
+	# Remove any existing annotations
+	sed -i -e "/^${key}\>/d" "$annot_file"
+	# Append new annotations
+	{
+		echo -ne "${key}\tpolicy<{"
+		for arch in ${archs}; do
+			echo -n "'${arch}': '${val:--}',"
+		done
+		echo "}>"
+		echo -e "${key}\tmark<ENFORCED> note<FIPS>"
+	} >> "$annot_file"
+done
