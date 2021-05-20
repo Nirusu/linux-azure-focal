@@ -145,16 +145,13 @@ diffupstream:
 startnewrelease:
 	dh_testdir
 	@[ -f "$(DEBIAN)/etc/update.conf" ] && . "$(DEBIAN)/etc/update.conf"; \
-	if [ -n "$$BACKPORT_SUFFIX" ]; then \
-		ver="$$(dpkg-parsechangelog -l"$$DEBIAN_MASTER/changelog" -SVersion)$${BACKPORT_SUFFIX}.1"; \
-		prev_ver="$$(dpkg-parsechangelog -l"$(DEBIAN)/changelog" -SVersion)"; \
-		if [ "$${ver%.*}" = "$${prev_ver%.*}" ]; then \
-			ver="$${ver%.*}.$$(( $${prev_ver##*.} +1 ))"; \
-		fi; \
-	else \
-		ver="$(release)-$$(echo "$(revision)" | \
-			perl -ne 'if (/^(\d*)\.(\d*)(.*)?$$/) { printf("%d.%d%s\n", $$1 + 1, $$2 +1, $$3) }')"; \
+	echo '# linux-azure-cvm custom version number suffix:' >/dev/null; \
+	ver="$$(dpkg-parsechangelog -l"$$DEBIAN_MASTER/changelog" -SVersion)+cvm1"; \
+	prev_ver="$$(dpkg-parsechangelog -l"$(DEBIAN)/changelog" -SVersion)"; \
+	if [ "$${ver%[+~]cvm*}" = "$${prev_ver%[+~]cvm*}" ]; then \
+		ver="$${ver%[+~]cvm*}+cvm$$(( $${prev_ver##*cvm} +1 ))"; \
 	fi; \
+	echo '# End of custom suffix.' >/dev/null; \
 	now="$(shell date -R)"; \
 	echo "Creating new changelog set for $$ver..."; \
 	echo -e "$(src_pkg_name) ($$ver) UNRELEASED; urgency=medium\n" > $(DEBIAN)/changelog.new; \
