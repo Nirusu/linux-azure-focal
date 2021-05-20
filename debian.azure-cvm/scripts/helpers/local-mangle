@@ -1,0 +1,5 @@
+#!/bin/bash -eu
+
+# shellcheck disable=SC1091
+. debian/debian.env
+
