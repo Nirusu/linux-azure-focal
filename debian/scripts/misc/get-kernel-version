@@ -1,0 +1,32 @@
+#!/bin/bash
+
+if [ "$#" -ne 2 ]; then
+	echo "Usage: $0 <arch> <flavour>" 1>&2
+	exit 1
+fi
+
+arch=$1
+flavour=$2
+meta="linux-$flavour"
+
+# find our changelog.
+debian=$(awk -F= '($1 == "DEBIAN") { print $2 }' <debian/debian.env)
+
+# identify the current series
+series=$(dpkg-parsechangelog -l"$debian/changelog" -SDistribution)
+if [ "$series" = "UNRELEASED" ]; then
+		series=$(dpkg-parsechangelog -l"$debian/changelog" -c1 -o1 -SDistribution)
+fi
+
+read x x meta_version x <<EOL
+$(rmadison -a $arch -s "$series-proposed" "$meta")
+EOL
+ver=$(echo "$meta_version" | cut -f1-3 -d'.')
+abi=$(echo "$meta_version" | cut -f4 -d'.')
+
+linux="linux-image-$ver-$abi-$flavour"
+read x x linux_version x <<EOL
+$(rmadison -a $arch -s "$series-proposed" "$linux")
+EOL
+
+echo "$linux_version"
