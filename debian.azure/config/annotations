@@ -4,6 +4,12 @@
 
 include "../../debian.master/config/annotations"
 
+CONFIG_SND_SOC_INTEL_USER_FRIENDLY_LONG_NAMES   policy<{'amd64': '-'}>
+CONFIG_SND_SOC_INTEL_USER_FRIENDLY_LONG_NAMES   mark<ENFORCED> note<LP:1921632>
+
+CONFIG_SND_SOC_INTEL_SOUNDWIRE_SOF_MACH         policy<{'amd64': '-'}>
+CONFIG_SND_SOC_INTEL_SOUNDWIRE_SOF_MACH         mark<ENFORCED> note<LP:1921632>
+
 CONFIG_ACPI_HOTPLUG_MEMORY                         policy<{'amd64': 'n'}>
 CONFIG_ACPI_HOTPLUG_MEMORY                         mark<ENFORCED> note<LP:#1671203>
 
