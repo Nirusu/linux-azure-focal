@@ -18,15 +18,19 @@ if [ "$series" = "UNRELEASED" ]; then
 		series=$(dpkg-parsechangelog -l"$debian/changelog" -c1 -o1 -SDistribution)
 fi
 
-read x x meta_version x <<EOL
-$(rmadison -a $arch -s "$series-proposed" "$meta")
-EOL
+for pocket in proposed updates; do
+	read -r x x meta_version x < \
+	     <(rmadison -a $arch -s "$series-$pocket" "$meta")
+	[ -n "$meta_version" ] && break
+done
 ver=$(echo "$meta_version" | cut -f1-3 -d'.')
 abi=$(echo "$meta_version" | cut -f4 -d'.')
 
 linux="linux-image-$ver-$abi-$flavour"
-read x x linux_version x <<EOL
-$(rmadison -a $arch -s "$series-proposed" "$linux")
-EOL
+for pocket in proposed updates; do
+	read -r x x linux_version x < \
+	     <(rmadison -a $arch -s "$series-$pocket" "$linux")
+	[ -n "$linux_version" ] && break
+done
 
 echo "$linux_version"
