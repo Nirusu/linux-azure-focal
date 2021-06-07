@@ -144,7 +144,7 @@ startnewrelease:
 	dh_testdir
 	@flavour=$$(echo "$(flavours)" | cut -f1 -d' ');				\
 	prev_ver=$$(dpkg-parsechangelog -l"$(DEBIAN)/changelog" -SVersion);		\
-	ver=$$(debian/scripts/misc/get-kernel-version "$(DEB_HOST_ARCH)" "$$flavour");	\
+	ver=$$(debian/scripts/misc/get-kernel-version source "$$flavour");		\
 	if [ "$${prev_ver%.*}" = "$${ver}" ]; then					\
 		ver="$${prev_ver%.*}.$$(( $${prev_ver##*.} +1))";			\
 	else										\
