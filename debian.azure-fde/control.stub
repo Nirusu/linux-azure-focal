@@ -17,9 +17,8 @@ Vcs-Git: git://mhcerri@git.launchpad.net/~canonical-kernel/ubuntu/+source/linux-
 Package: linux-image-unsigned-ABI-azure-fde
 Architecture: amd64
 Depends: ${unsigned:Depends}
-Recommends: ${unsigned:Recommends}
 Suggests: ${unsigned:Suggests}
-Conflicts: ${unsigned:Conflicts}
+Conflicts: linux-image-ABI-azure-fde
 Provides: ${unsigned:Provides}
 Built-Using: UNSIGNED_SRC_PACKAGE (= UNSIGNED_SRC_VERSION)
 Description: EFI Linux kernel image for azure

@@ -5,5 +5,6 @@ version="$2"
 to="$3"
 
 apt-cache show "$from=$version" | \
-	egrep '^(Depends|Suggests|Provides|Conflicts|Replaces|Recommends):' | \
-	sed -e 's/: /=/' -e 's/^/unsigned:/' -e "s/\\<$to\\>/$from/"
+	egrep '^(Depends|Suggests|Provides|Replaces):' | \
+	sed -e 's/: /=/' -e 's/^/unsigned:/' \
+	    -e "s/\\<\\(initramfs-tools\\|linux-initramfs\\)[^,]*//"
