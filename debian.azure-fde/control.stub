@@ -1,22 +1,33 @@
-Source: @SRCPKGNAME@
-Section: devel
+Source: SRCPKGNAME
+Section: kernel
 Priority: optional
-Maintainer: Ubuntu Kernel Team <kernel-team@lists.ubuntu.com>
-Standards-Version: 3.9.8
+Maintainer: Canonical Kernel Team <kernel-team@lists.ubuntu.com>
 Build-Depends:
  dpkg (>= 1.13.19),
  debhelper (>= 9),
  ubuntu-core-initramfs,
- kmod,
- linux-firmware
+ lsb-release,
+ python3,
+ python3-apt,
+ HEADERS_ARCH (>= UNSIGNED_SRC_VERSION),
 Build-Depends-Arch:
- @KERNEL_SOURCE@-image-unsigned-@KERNEL_ABI_VERSION@-azure,
- @KERNEL_SOURCE@-modules-@KERNEL_ABI_VERSION@-azure,
- @KERNEL_SOURCE@-modules-extra-@KERNEL_ABI_VERSION@-azure,
+ linux-image-unsigned-ABI-azure,
 Vcs-Git: git://mhcerri@git.launchpad.net/~canonical-kernel/ubuntu/+source/linux-azure/+git/focal -b azure-fde
 
-Package: @SRCPKGNAME@
+Package: linux-image-unsigned-ABI-azure-fde
 Architecture: amd64
+Depends: ${unsigned:Depends}
+Recommends: ${unsigned:Recommends}
+Suggests: ${unsigned:Suggests}
+Conflicts: ${unsigned:Conflicts}
+Provides: ${unsigned:Provides}
+Built-Using: UNSIGNED_SRC_PACKAGE (= UNSIGNED_SRC_VERSION)
+Description: EFI Linux kernel image for azure
+ An EFI kernel image for azure including initrd.
+
+Package: linux-image-unsigned-ABI-azure-fde-dbgsym
 Section: devel
-Priority: optional
-Description: Empty package
+Architecture: amd64
+Depends: linux-image-unsigned-ABI-azure-dbgsym
+Description: EFI Linux kernel image for azure
+ A link to the debugging symbols for the EFI azure kernel.

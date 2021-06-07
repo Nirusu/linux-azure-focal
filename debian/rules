@@ -1,70 +1,132 @@
-#!/usr/bin/make -f
+#! /usr/bin/make -f
 
-SHELL=/bin/bash -e
+##export DH_VERBOSE := 1
 
-DEBIAN=$(shell awk -F= '($$1 == "DEBIAN") { print $$2 }' <debian/debian.env)
+SHELL = /bin/bash -e
+DEBIAN = $(shell awk -F= '($$1 == "DEBIAN") { print $$2 }' <debian/debian.env)
+DEB_HOST_ARCH = $(shell dpkg-architecture -qDEB_HOST_ARCH)
 
-SERIES=$(shell dpkg-parsechangelog -l$(DEBIAN)/changelog -SDistribution | sed -e 's/-\(security\|updates\|proposed\)$$//')
-SOURCE=$(shell dpkg-parsechangelog -l$(DEBIAN)/changelog -SSource)
-KERNEL_SOURCE=$(shell echo "$(SOURCE)" | sed -e 's/-azure-fde//')
+flavours = azure
+src = $(shell dpkg-parsechangelog -l"$(DEBIAN)/changelog" -SSource)
+ver = $(shell dpkg-parsechangelog -l"$(DEBIAN)/changelog" -SVersion)
+abi = $(shell echo "$(ver)" | sed -ne 's/\([0-9]*\.[0-9]*\.[0-9]*\-[0-9]*\)\..*/\1/p')
 
-VERSION=$(shell dpkg-parsechangelog -l$(DEBIAN)/changelog -SVersion)
-KERNEL_ABI_VERSION=$(shell echo "$(VERSION)" | sed -ne 's/\([0-9]*\.[0-9]*\.[0-9]*\-[0-9]*\)\..*/\1/p')
+# Work out the source package name and version of the unsigned package
+# By convention, it is the name of this package with -fde stripped.
+# The version is identical to this package less any rebuild suffix (.N).
+unsigned_src = $(shell echo $(src) | sed -e 's/-fde//')
+unsigned_ver = $(shell echo $(ver) | sed -e 's/\.[^.]\+$$//')
 
-DEB_HOST_ARCH=$(shell dpkg-architecture -qDEB_HOST_ARCH)
+# Work out header packges for build deps. Depend on the common header
+# package and the per-arch generic headers package (assumes all arches
+# have a generic flavour, which is currently true).
+src_headers = $(unsigned_src)-headers-$(abi)
+src_headers_arch = linux-headers-$(abi)-azure
 
-FLAVOURS=azure
-
-clean: debian/control
-	dh_testdir
-	dh_testroot
-	rm -rf debian/tmp SIGNING
-	dh_clean
-
-debian/control:
+# We build our control file.  This has to be done before dh runs otherwise
+# we have no binary files and we will not run the appropriate targets.
+pre-clean:
 	sed <$(DEBIAN)/control.stub >debian/control			\
-		-e 's/@SERIES@/$(SERIES)/g'				\
-		-e 's/@KERNEL_ABI_VERSION@/$(KERNEL_ABI_VERSION)/g'	\
-		-e 's/@SRCPKGNAME@/$(SOURCE)/g'				\
-		-e 's/@KERNEL_SOURCE@/$(KERNEL_SOURCE)/g'
+		-e "s/ABI/$(abi)/g"					\
+		-e "s/UNSIGNED_SRC_PACKAGE/$(unsigned_src)/g"		\
+		-e "s/UNSIGNED_SRC_VERSION/$(unsigned_ver)/g"		\
+		-e 's/SRCPKGNAME/$(src)/g'				\
+		-e 's/HEADERS_COMMON/$(src_headers)/g'			\
+		-e 's/HEADERS_ARCH/$(src_headers_arch)/g'
+	rm -rf ./$(unsigned_ver) SIGNING EFI
+	rm -f 	debian/linux-image-*.install				\
+		debian/linux-image-*.preinst 				\
+		debian/linux-image-*.prerm 				\
+		debian/linux-image-*.postinst 				\
+		debian/linux-image-*.postrm
+	rm -f 	debian/kernel-signed-image-*.install
 	cp $(DEBIAN)/changelog debian/changelog
 
-.PHONY: debian/control
+PHONY: pre-clean
+
+clean:: pre-clean
 
 %:
 	dh $@
 
+override_dh_auto_build: outdir = $(CURDIR)/EFI
 override_dh_auto_build: signing = $(CURDIR)/SIGNING
-override_dh_auto_build: signingv = $(signing)/$(VERSION)
-override_dh_auto_build: signing_tar = $(SOURCE)_$(VERSION)_$(DEB_HOST_ARCH).tar.gz
-override_dh_auto_build: outdir = $(CURDIR)/debian/tmp
-override_dh_auto_build: initrd = $(outdir)/initramfs.img
-override_dh_auto_build: efi = $(outdir)/kernel.efi
+override_dh_auto_build: signingv = $(signing)/$(ver)
+override_dh_auto_build: signing_tar = $(src)_$(ver)_$(DEB_HOST_ARCH).tar.gz
+override_dh_auto_build: tmpdir = $(CURDIR)/debian/tmp
+override_dh_auto_build: initrd = $(tmpdir)/initramfs.img
+override_dh_auto_build: efi = $(tmpdir)/kernel.efi
 override_dh_auto_build:
-	install -d $(signingv)/control
-	mkdir -p $(outdir)
-	for flavour in $(FLAVOURS); do						\
-		pkg="linux-image-unsigned-$(KERNEL_ABI_VERSION)-$$flavour";	\
+	install -d "$(signingv)/control"
+	mkdir -p "$(outdir)"
+	mkdir -p "$(tmpdir)"
+	for flavour in $(flavours); do						\
+		pkg="linux-image-unsigned-$(abi)-$$flavour";			\
 		(								\
-			cd $(outdir);						\
-			apt-get download $$pkg;					\
-			dpkg-deb -x $${pkg}_*.deb $$flavour;			\
+			cd "$(tmpdir)";						\
+			apt-get download "$$pkg";				\
+			dpkg-deb -x $${pkg}_*.deb $$flavour; 			\
 		);								\
-		ubuntu-core-initramfs create-initrd --output $(initrd)		\
-			--kernelver $(KERNEL_ABI_VERSION)-$$flavour;		\
-		ubuntu-core-initramfs create-efi --unsigned --output $(efi)	\
-			--kernel $(outdir)/$$flavour/boot/vmlinuz		\
-			--kernelver $(KERNEL_ABI_VERSION)-$$flavour		\
-			--initrd $(initrd);					\
-		cp -p $(efi)-$(KERNEL_ABI_VERSION)-$$flavour			\
-			$(signingv)/vmlinuz-$(KERNEL_ABI_VERSION)-$$flavour.efi;\
+		ubuntu-core-initramfs create-initrd --output "$(initrd)"	\
+			--kernelver "$(abi)-$$flavour";				\
+		ubuntu-core-initramfs create-efi --unsigned --output "$(efi)"	\
+			--kernel "$(tmpdir)/$$flavour/boot/vmlinuz"		\
+			--kernelver "$(abi)-$$flavour"				\
+			--initrd "$(initrd)";					\
+		cp -pv "$(efi)-$(abi)-$$flavour"				\
+			"$(signingv)/vmlinuz-$(abi)-$$flavour.efi";		\
+		cp -pv "$(efi)-$(abi)-$$flavour"				\
+			"$(outdir)/kernel.efi-$(abi)-$$flavour";		\
 	done
 	{ echo "tarball"; } >$(signingv)/control/options
 	cd $(signing) && tar czvf ../../$(signing_tar) .
 	dpkg-distaddfile $(signing_tar) raw-signing -
 
+override_dh_auto_install:
+	for signed in "EFI"/*; do						\
+		flavour=$$(echo "$$signed" | sed -e "s@.*-$(abi)-@@");		\
+		instfile=$$(echo "$$signed" | sed -e "s@[^/]*/@@"		\
+			-e "s@-$(abi)-.*@@");					\
+		instdir=/usr/lib/linux/;					\
+		verflav="$(abi)-$$flavour";					\
+										\
+		package="linux-image-unsigned-$$verflav-fde";			\
+		echo "$$package: adding $$signed";				\
+		echo "$$signed $$instdir" >>"debian/$$package.install";		\
+										\
+		./generate-depends						\
+			linux-image-unsigned-$$verflav $(unsigned_ver)		\
+			linux-image-$$verflav >> 				\
+			"debian/linux-image-unsigned-$$verflav-fde.substvars";	\
+										\
+		for which in postinst postrm preinst prerm; do			\
+			template="debian/templates/image.$$which.in";		\
+			script="debian/$$package.$$which";			\
+			sed -e "s/@abiname@/$(abi)/g"				\
+			    -e "s/@localversion@/-$$flavour/g"			\
+			    -e "s/@image-stem@/$$instfile/g"			\
+			    -e "s,@install-dir@,$$instdir,g"			\
+				<"$$template" >"$$script";			\
+		done;								\
+		echo "interest linux-update-$(abi)-$$flavour"	 		\
+			>"debian/$$package.triggers";				\
+	done
+	dh_install
+
+override_dh_builddeb:
+	dh_builddeb
+	for pkg in $$(dh_listpackages); do \
+		case $$pkg in *dbgsym) ;; *) continue ;; esac; \
+		mv ../$${pkg}_$(ver)_$(DEB_HOST_ARCH).deb \
+		   ../$${pkg}_$(ver)_$(DEB_HOST_ARCH).ddeb; \
+		sed -i "/^$${pkg}_/s/\.deb /.ddeb /" debian/files; \
+	done
+
+override_dh_fixperms:
+	dh_fixperms -X/boot/
+
 printchanges:
-	@prev_ver=$$(dpkg-parsechangelog -l$(DEBIAN)/changelog -o1 -c1 -SVersion);	\
+	@prev_ver=$$(dpkg-parsechangelog -l"$(DEBIAN)/changelog" -o1 -c1 -SVersion);	\
 	base_commit=$$(git log --format="%H %s" | 					\
 		gawk '/UBUNTU: '".*Ubuntu-.*$$prev_ver"'$$/ { print $$1; exit }');	\
 	if [ -z "$$base_commit" ]; then							\
@@ -76,13 +138,13 @@ printchanges:
 		debian/scripts/misc/git-ubuntu-log
 
 insertchanges:
-	@perl -w -f debian/scripts/misc/insert-changes.pl debian $(DEBIAN)
+	@perl -w -f debian/scripts/misc/insert-changes.pl debian "$(DEBIAN)"
 
 startnewrelease:
 	dh_testdir
-	@flavour=$$(echo "$(FLAVOURS)" | cut -f1 -d' ');				\
-	prev_ver=$$(dpkg-parsechangelog -SVersion);					\
-	ver=$$(debian/scripts/misc/get-kernel-version $(DEB_HOST_ARCH) $$flavour);	\
+	@flavour=$$(echo "$(flavours)" | cut -f1 -d' ');				\
+	prev_ver=$$(dpkg-parsechangelog -l"$(DEBIAN)/changelog" -SVersion);		\
+	ver=$$(debian/scripts/misc/get-kernel-version "$(DEB_HOST_ARCH)" "$$flavour");	\
 	if [ "$${prev_ver%.*}" = "$${ver}" ]; then					\
 		ver="$${prev_ver%.*}.$$(( $${prev_ver##*.} +1))";			\
 	else										\
@@ -90,17 +152,17 @@ startnewrelease:
 	fi;										\
 	now="$(shell date -R)";								\
 	echo "Creating new changelog set for $$ver...";					\
-	echo -e "$(SOURCE) ($$ver) UNRELEASED; urgency=medium\n" 			\
+	echo -e "$(src) ($$ver) UNRELEASED; urgency=medium\n" 				\
 		>$(DEBIAN)/changelog.new;						\
 	if [ "$${prev_ver%.*}" != "$${ver%.*}" ]; then					\
 		echo -e "  * Master version: $${ver%.*}\n" >>$(DEBIAN)/changelog.new;	\
 	fi;										\
 	echo "  CHANGELOG: Do not edit directly. Autogenerated at release."		\
-		>>$(DEBIAN)/changelog.new;							\
+		>>$(DEBIAN)/changelog.new;						\
 	echo "  CHANGELOG: Use the printchanges target to see the curent changes."	\
-		>>$(DEBIAN)/changelog.new;							\
+		>>$(DEBIAN)/changelog.new;						\
 	echo "  CHANGELOG: Use the insertchanges target to create the final log."	\
-		>>$(DEBIAN)/changelog.new;							\
+		>>$(DEBIAN)/changelog.new;						\
 	echo -e "\n -- $$DEBFULLNAME <$$DEBEMAIL>  $$now\n" >>$(DEBIAN)/changelog.new;	\
-	cat $(DEBIAN)/changelog >>$(DEBIAN)/changelog.new;					\
-	mv $(DEBIAN)/changelog.new $(DEBIAN)/changelog
+	cat "$(DEBIAN)"/changelog >> "$(DEBIAN)"/changelog.new;				\
+	mv "$(DEBIAN)"/changelog.new "$(DEBIAN)"/changelog
