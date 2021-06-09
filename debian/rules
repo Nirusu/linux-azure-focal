@@ -68,8 +68,10 @@ override_dh_auto_build:
 			dpkg-deb -x $${pkg}_*.deb $$flavour; 			\
 		);								\
 		ubuntu-core-initramfs create-initrd --output "$(initrd)"	\
+			--feature main server cloudimg-rootfs			\
 			--kernelver "$(abi)-$$flavour";				\
 		ubuntu-core-initramfs create-efi --unsigned --output "$(efi)"	\
+			--cmdline "snapd_recovery_mode=cloudimg-rootfs"		\
 			--kernel "$(tmpdir)/$$flavour/boot/vmlinuz"		\
 			--kernelver "$(abi)-$$flavour"				\
 			--initrd "$(initrd)";					\
