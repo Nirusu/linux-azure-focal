@@ -71,7 +71,7 @@ override_dh_auto_build:
 			--feature main server cloudimg-rootfs			\
 			--kernelver "$(abi)-$$flavour";				\
 		ubuntu-core-initramfs create-efi --unsigned --output "$(efi)"	\
-			--cmdline "snapd_recovery_mode=cloudimg-rootfs"		\
+			--cmdline "snapd_recovery_mode=cloudimg-rootfs console=tty1 console=ttyS0 earlyprintk=ttyS0"	\
 			--kernel "$(tmpdir)/$$flavour/boot/vmlinuz"		\
 			--kernelver "$(abi)-$$flavour"				\
 			--initrd "$(initrd)";					\
