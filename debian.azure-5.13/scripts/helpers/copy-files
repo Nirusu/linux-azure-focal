@@ -36,7 +36,7 @@ rsync -avc --delete "${DEBIAN_MASTER}/d-i/" "${DEBIAN}/d-i"
 rsync -avc --delete "${DEBIAN_MASTER}/config/" "${DEBIAN}/config"
 
 #
-# Update package and DTB settings from master
+# Update package and DTB settings from master.
 #
 if [ -z "${SKIP_RULES_D}" ] ; then
 	rsync -avc "${DEBIAN_MASTER}/rules.d/"*.mk "${DEBIAN}/rules.d/"
