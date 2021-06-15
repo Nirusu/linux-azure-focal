@@ -289,3 +289,4 @@ CONFIG_SAMPLE_TRACE_PRINTK                         note<Unnecessary for Azure>
 
 CONFIG_SPI_INTEL_SPI_PLATFORM                      policy<{'amd64': '-'}>
 CONFIG_SPI_INTEL_SPI_PLATFORM                      note<Unnecessary for Azure>
+CONFIG_DEBUG_INFO_BTF                           policy<{'amd64': 'n', 'arm64': 'n', 'armhf': 'n', 'ppc64el': 'n', 's390x': 'n'}>
