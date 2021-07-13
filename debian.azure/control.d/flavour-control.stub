@@ -29,7 +29,7 @@ Priority: optional
 Provides: linux-image, fuse-module, =PROVIDES=${linux:rprovides}
 Depends: ${misc:Depends}, ${shlibs:Depends}, kmod, linux-base (>= 4.5ubuntu1~16.04.1), linux-base-sgx (>= 4.5ubuntu5.3), linux-modules-PKGVER-ABINUM-FLAVOUR
 Recommends: BOOTLOADER
-Breaks: flash-kernel (<< 3.0~rc.4ubuntu64) [arm64]
+Breaks: flash-kernel (<< 3.90ubuntu2) [arm64 armhf]
 Conflicts: linux-image=SIGN-PEER-PKG=-PKGVER-ABINUM-FLAVOUR
 Suggests: fdutils, SRCPKGNAME-doc-PKGVER | SRCPKGNAME-source-PKGVER, SRCPKGNAME-tools, linux-headers-PKGVER-ABINUM-FLAVOUR, initramfs-tools | linux-initramfs-tool
 Description: Linux kernel image for version PKGVER on DESC
