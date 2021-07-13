@@ -28,7 +28,7 @@ CONFIG_ASHMEM                                      mark<ENFORCED> note<LP:#19145
 CONFIG_ANDROID_BINDER_IPC                          policy<{'amd64': 'm', 'arm64': 'm'}>
 CONFIG_ANDROID_BINDER_IPC                          mark<ENFORCED> note<LP:#1914568>
 
-CONFIG_ANDROID_BINDERFS                            policy<{'amd64': 'm'}>
+CONFIG_ANDROID_BINDERFS                            policy<{'amd64': 'm', 'arm64': 'm'}>
 CONFIG_ANDROID_BINDERFS                            mark<ENFORCED> note<LP:#1925246>
 
 CONFIG_MLX5_CORE                                   policy<{'amd64': 'm', 'arm64': 'm'}>
@@ -52,13 +52,13 @@ CONFIG_INFINIBAND_IPOIB                            mark<ENFORCED> note<LP:#18373
 CONFIG_BLK_DEV_NVME                                policy<{'amd64': 'y', 'arm64': 'y'}>
 CONFIG_BLK_DEV_NVME                                mark<ENFORCED> note<LP:#1793386> note<LP:#1908571>
 
-CONFIG_PCI_HYPERV                                  policy<{'amd64': 'y', 'arm64': 'y'}>
+CONFIG_PCI_HYPERV                                  policy<{'amd64': 'y', 'arm64': '-'}>
 CONFIG_PCI_HYPERV                                  mark<ENFORCED> note<LP:#1908571>
 
-CONFIG_EDAC_DECODE_MCE                             policy<{'amd64': 'y', 'arm64': 'y'}>
+CONFIG_EDAC_DECODE_MCE                             policy<{'amd64': 'y', 'arm64': '-'}>
 CONFIG_EDAC_DECODE_MCE                             mark<ENFORCED> note<LP:#1793386>
 
-CONFIG_EDAC_AMD64                                  policy<{'amd64': 'm', 'arm64': 'm'}>
+CONFIG_EDAC_AMD64                                  policy<{'amd64': 'm', 'arm64': '-'}>
 CONFIG_EDAC_AMD64                                  mark<ENFORCED> note<LP:#1793386>
 
 CONFIG_INFINIBAND_IPOIB_DEBUG                      policy<{'amd64': 'y', 'arm64': 'y'}>
@@ -82,13 +82,13 @@ CONFIG_HYPERV                                      mark<ENFORCED> note<LP:#16901
 CONFIG_HYPERV_STORAGE                              policy<{'amd64': 'y', 'arm64': 'y'}>
 CONFIG_HYPERV_STORAGE                              mark<ENFORCED> note<LP:#1690136>
 
-CONFIG_EFI_VARS                                    policy<{'amd64': 'y', 'arm64': 'y'}>
+CONFIG_EFI_VARS                                    policy<{'amd64': 'y', 'arm64': '-'}>
 CONFIG_EFI_VARS                                    mark<ENFORCED> note<LP:#1692920>
 
 CONFIG_HYPERV_VSOCKETS                             policy<{'amd64': 'm', 'arm64': 'm'}>
 CONFIG_HYPERV_VSOCKETS                             mark<ENFORCED> note<LP:#1698425>
 
-CONFIG_HYPERV_INFINIBAND_ND                        policy<{'amd64': 'm', 'arm64': 'm'}>
+CONFIG_HYPERV_INFINIBAND_ND                        policy<{'amd64': 'm', 'arm64': '-'}>
 CONFIG_HYPERV_INFINIBAND_ND                        mark<ENFORCED> note<LP:#1698425>
 
 CONFIG_DEV_DAX                                     policy<{'amd64': 'y', 'arm64': 'y'}>
@@ -118,7 +118,7 @@ CONFIG_DRM_NOUVEAU                                 mark<ENFORCED> note<LP:#17529
 CONFIG_BLK_DEV_DRBD                                policy<{'amd64': 'm', 'arm64': 'm'}>
 CONFIG_BLK_DEV_DRBD                                mark<ENFORCED> note<LP:#1780309>
 
-CONFIG_VBOXGUEST                                   policy<{'amd64': 'n', 'arm64': 'n'}>
+CONFIG_VBOXGUEST                                   policy<{'amd64': 'n', 'arm64': '-'}>
 CONFIG_VBOXGUEST                                   mark<ENFORCED> note<LP:#1796647>
 
 CONFIG_XEN_ACPI_PROCESSOR                          policy<{'amd64': '-', 'arm64': '-'}>
@@ -213,7 +213,7 @@ CONFIG_SATA_VITESSE                                mark<ENFORCED> note<modules r
 CONFIG_SATA_ZPODD                                  policy<{'amd64': 'n', 'arm64': 'n'}>
 CONFIG_SATA_ZPODD                                  mark<ENFORCED> note<modules reduction>
 
-CONFIG_HYPERV_IOMMU                                policy<{'amd64': 'y', 'arm64': 'y'}>
+CONFIG_HYPERV_IOMMU                                policy<{'amd64': 'y', 'arm64': '-'}>
 CONFIG_HYPERV_IOMMU                                mark<ENFORCED> note<LP:#1826447>
 
 CONFIG_LOOPBACK_TARGET                             policy<{'amd64': 'm', 'arm64': 'm'}>
