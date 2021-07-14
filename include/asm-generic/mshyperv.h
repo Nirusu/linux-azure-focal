@@ -229,6 +229,7 @@ static inline int cpumask_to_vpset(struct hv_vpset *vpset,
 void hyperv_report_panic(struct pt_regs *regs, long err, bool in_die);
 bool hv_is_hyperv_initialized(void);
 bool hv_is_hibernation_supported(void);
+bool hv_is_isolation_supported(void);
 void hyperv_cleanup(void);
 bool hv_query_ext_cap(u64 cap_query);
 #else /* CONFIG_HYPERV */
