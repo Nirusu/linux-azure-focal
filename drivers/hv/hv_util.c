@@ -17,8 +17,8 @@
 #include <linux/hyperv.h>
 #include <linux/clockchips.h>
 #include <linux/ptp_clock_kernel.h>
-#include <clocksource/hyperv_timer.h>
 #include <asm/mshyperv.h>
+#include <clocksource/hyperv_timer.h>
 
 #include "hyperv_vmbus.h"
 
