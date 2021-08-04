@@ -472,3 +472,4 @@ int memory_add_physaddr_to_nid(u64 addr)
 	pr_warn("Unknown node for memory at 0x%llx, assuming node 0\n", addr);
 	return 0;
 }
+EXPORT_SYMBOL(memory_add_physaddr_to_nid);
