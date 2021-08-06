@@ -1,13 +1,16 @@
-linux-azure (5.11.0-1013.14) hirsute; urgency=medium
+linux-azure (5.11.0-1013.14+21.10.1) impish; urgency=medium
+
+  * impish/linux-azure: 5.11.0-1013.14+21.10.1 -proposed tracker (LP: #1936483)
+
+  * Packaging resync (LP: #1786013)
+    - update dkms package versions
+
+  [ Ubuntu: 5.11.0-1013.14 ]
 
   * hirsute/linux-azure: 5.11.0-1013.14 -proposed tracker (LP: #1936485)
-
   * linux-azure: Ensure the latest linux-image-sgx is installed with the 5.11
     kernels (LP: #1937846)
     - [Packaging] Install the linux-base-sgx version for upstream SGX
-
-  [ Ubuntu: 5.11.0-26.28 ]
-
   * Packaging resync (LP: #1786013)
     - update dkms package versions
   * large_dir in ext4 broken (LP: #1933074)
@@ -820,23 +823,20 @@ linux-azure (5.11.0-1013.14) hirsute; urgency=medium
     (LP: #804178)
     - ALSA: hda: generic: change the DAC ctl name for LO+SPK or LO+HP
 
- -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Fri, 23 Jul 2021 13:18:28 -0300
-
-linux-azure (5.11.0-1012.13) hirsute; urgency=medium
-
-  [ Ubuntu: 5.11.0-25.27 ]
+  [ Ubuntu: 5.11.0-1012.13 ]
 
   * CVE-2021-33909
     - SAUCE: seq_file: Disallow extremely large seq buffer allocations
 
- -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Wed, 14 Jul 2021 09:32:57 -0300
+ -- Stefan Bader <stefan.bader@canonical.com>  Mon, 26 Jul 2021 12:00:27 +0200
 
-linux-azure (5.11.0-1011.11) hirsute; urgency=medium
+linux-azure (5.11.0-1011.11+21.10.1) impish; urgency=medium
+
+  * impish/linux-azure: 5.11.0-1011.11+21.10.1 -proposed tracker (LP: #1934054)
+
+  [ Ubuntu: 5.11.0-1011.11 ]
 
   * hirsute/linux-azure: 5.11.0-1011.11 -proposed tracker (LP: #1934056)
-
-  [ Ubuntu: 5.11.0-24.25 ]
-
   * test_pmtu_vti4_link_add_mtu() test from net/pmtu.sh in
     ubuntu_kernel_selftests cannot finish properly on 5.11 and 5.8
     (LP: #1933969)
@@ -845,18 +845,21 @@ linux-azure (5.11.0-1011.11) hirsute; urgency=medium
     - ip6_tunnel: sit: proper dev_{hold|put} in ndo_[un]init methods
     - ipv6: remove extra dev_hold() for fallback tunnels
 
- -- Stefan Bader <stefan.bader@canonical.com>  Wed, 30 Jun 2021 14:32:59 +0200
+ -- Stefan Bader <stefan.bader@canonical.com>  Fri, 02 Jul 2021 11:59:52 +0200
 
-linux-azure (5.11.0-1010.10) hirsute; urgency=medium
+linux-azure (5.11.0-1010.10+21.10.1) impish; urgency=medium
+
+  * impish/linux-azure: 5.11.0-1010.10+21.10.1 -proposed tracker (LP: #1932399)
+
+  * Packaging resync (LP: #1786013)
+    - update dkms package versions
+
+  [ Ubuntu: 5.11.0-1010.10 ]
 
   * hirsute/linux-azure: 5.11.0-1010.10 -proposed tracker (LP: #1932401)
-
   * Patch To Fix Bug in the Linux Block Layer Responsible For  Merging BIOs
     (LP: #1931497)
     - block: return the correct bvec when checking for gaps
-
-  [ Ubuntu: 5.11.0-23.24 ]
-
   * hirsute/linux: 5.11.0-23.24 -proposed tracker (LP: #1932420)
   * Packaging resync (LP: #1786013)
     - [Packaging] resync getabis
@@ -1240,38 +1243,33 @@ linux-azure (5.11.0-1010.10) hirsute; urgency=medium
   * scsi: storvsc: Parameterize number hardware queues (LP: #1930626)
     - scsi: storvsc: Parameterize number hardware queues
 
- -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Fri, 25 Jun 2021 12:51:37 -0300
-
-linux-azure (5.11.0-1009.9) hirsute; urgency=medium
-
-  [ Ubuntu: 5.11.0-22.23 ]
+  [ Ubuntu: 5.11.0-1009.9 ]
 
   * UAF on CAN J1939 j1939_can_recv (LP: #1932209)
     - SAUCE: can: j1939: delay release of j1939_priv after synchronize_rcu
   * UAF on CAN BCM bcm_rx_handler (LP: #1931855)
     - SAUCE: can: bcm: delay release of struct bcm_op after synchronize_rcu
 
- -- Thadeu Lima de Souza Cascardo <cascardo@canonical.com>  Wed, 16 Jun 2021 22:40:04 -0300
+ -- Stefan Bader <stefan.bader@canonical.com>  Tue, 29 Jun 2021 08:35:10 +0200
 
-linux-azure (5.11.0-1007.7) hirsute; urgency=medium
+linux-azure (5.11.0-1007.7+21.10.1) impish; urgency=medium
+
+  * impish/linux-azure: 5.11.0-1007.7+21.10.1 -proposed tracker (LP: #1930059)
+
+  * Packaging resync (LP: #1786013)
+    - update dkms package versions
+
+  [ Ubuntu: 5.11.0-1007.7 ]
 
   * hirsute/linux-azure: 5.11.0-1007.7 -proposed tracker (LP: #1930060)
-
   * build module CONFIG_SND_SOC_INTEL_SOUNDWIRE_SOF_MACH=m for 5.11,  5.13-rc2
     and later (LP: #1921632)
     - [Config] azure: disable soundwire audio mach driver
-
   * scsi: storvsc: Parameterize number hardware queues (LP: #1930626)
     - scsi: storvsc: Parameterize number hardware queues
-
-  [ Ubuntu: 5.11.0-20.21 ]
-
   * hirsute/linux: 5.11.0-20.21 -proposed tracker (LP: #1930854)
   * ath11k WIFI not working in proposed kernel 5.11.0-19-generic (LP: #1930637)
     - bus: mhi: core: Download AMSS image from appropriate function
-
-  [ Ubuntu: 5.11.0-19.20 ]
-
   * hirsute/linux: 5.11.0-19.20 -proposed tracker (LP: #1930075)
   * Packaging resync (LP: #1786013)
     - update dkms package versions
@@ -2378,7 +2376,23 @@ linux-azure (5.11.0-1007.7) hirsute; urgency=medium
     - mei: me: add Alder Lake P device id.
     - Linux 5.11.18
 
- -- Tim Gardner <tim.gardner@canonical.com>  Fri, 04 Jun 2021 12:39:11 -0600
+ -- Tim Gardner <tim.gardner@canonical.com>  Tue, 08 Jun 2021 11:07:35 -0600
+
+linux-azure (5.11.0-1006.6+21.10.1) impish; urgency=medium
+
+  * impish/linux-azure: 5.11.0-1006.6+21.10.1 -proposed tracker (LP: #1927563)
+
+  * Packaging resync (LP: #1786013)
+    - [Packaging] update update.conf
+    - update dkms package versions
+
+ -- Paolo Pisati <paolo.pisati@canonical.com>  Wed, 19 May 2021 12:51:59 +0200
+
+linux-azure (5.11.0-1006.6) impish; urgency=medium
+
+  * Empty entry
+
+ -- Paolo Pisati <paolo.pisati@canonical.com>  Wed, 19 May 2021 11:38:35 +0200
 
 linux-azure (5.11.0-1006.6) hirsute; urgency=medium
 
