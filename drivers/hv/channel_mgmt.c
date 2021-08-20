@@ -445,7 +445,9 @@ static void vmbus_add_channel_work(struct work_struct *work)
 
 	dev_type = hv_get_dev_type(newchannel);
 
+	mutex_lock(&vmbus_connection.channel_mutex);
 	init_vp_index(newchannel, dev_type);
+	mutex_unlock(&vmbus_connection.channel_mutex);
 
 	if (newchannel->target_cpu != get_cpu()) {
 		put_cpu();
@@ -553,6 +555,19 @@ static void vmbus_process_offer(struct vmbus_channel *newchannel)
 
 	mutex_lock(&vmbus_connection.channel_mutex);
 
+	list_for_each_entry(channel, &vmbus_connection.chn_list, listentry) {
+		if (guid_equal(&channel->offermsg.offer.if_type,
+			       &newchannel->offermsg.offer.if_type) &&
+		    guid_equal(&channel->offermsg.offer.if_instance,
+			       &newchannel->offermsg.offer.if_instance)) {
+			fnew = false;
+			newchannel->primary_channel = channel;
+			break;
+		}
+	}
+
+	init_vp_index(newchannel, hv_get_dev_type(newchannel));
+
 	/* Remember the channels that should be cleaned up upon suspend. */
 	if (is_hvsock_channel(newchannel) || is_sub_channel(newchannel))
 		atomic_inc(&vmbus_connection.nr_chan_close_on_suspend);
@@ -562,16 +577,6 @@ static void vmbus_process_offer(struct vmbus_channel *newchannel)
 	 * we can release the potentially racing rescind thread.
 	 */
 	atomic_dec(&vmbus_connection.offer_in_progress);
-
-	list_for_each_entry(channel, &vmbus_connection.chn_list, listentry) {
-		if (guid_equal(&channel->offermsg.offer.if_type,
-			       &newchannel->offermsg.offer.if_type) &&
-		    guid_equal(&channel->offermsg.offer.if_instance,
-			       &newchannel->offermsg.offer.if_instance)) {
-			fnew = false;
-			break;
-		}
-	}
 
 	if (fnew)
 		list_add_tail(&newchannel->listentry,
@@ -593,7 +598,6 @@ static void vmbus_process_offer(struct vmbus_channel *newchannel)
 		/*
 		 * Process the sub-channel.
 		 */
-		newchannel->primary_channel = channel;
 		spin_lock_irqsave(&channel->lock, flags);
 		list_add_tail(&newchannel->sc_list, &channel->sc_list);
 		spin_unlock_irqrestore(&channel->lock, flags);
@@ -629,6 +633,30 @@ static void vmbus_process_offer(struct vmbus_channel *newchannel)
 }
 
 /*
+ * Check if CPUs used by other channels of the same device.
+ * It should only be called by init_vp_index().
+ */
+static bool hv_cpuself_used(u32 cpu, struct vmbus_channel *chn)
+{
+	struct vmbus_channel *primary = chn->primary_channel;
+	struct vmbus_channel *sc;
+
+	lockdep_assert_held(&vmbus_connection.channel_mutex);
+
+	if (!primary)
+		return false;
+
+	if (primary->target_cpu == cpu)
+		return true;
+
+	list_for_each_entry(sc, &primary->sc_list, sc_list)
+		if (sc != chn && sc->target_cpu == cpu)
+			return true;
+
+	return false;
+}
+
+/*
  * We use this state to statically distribute the channel interrupt load.
  */
 static int next_numa_node_id;
@@ -651,12 +679,13 @@ static DEFINE_SPINLOCK(bind_channel_to_cpu_lock);
  */
 static void init_vp_index(struct vmbus_channel *channel, u16 dev_type)
 {
-	u32 cur_cpu;
 	bool perf_chn = vmbus_devs[dev_type].perf_device;
 	struct vmbus_channel *primary = channel->primary_channel;
-	int next_node;
+	u32 i, ncpu = num_online_cpus();
 	cpumask_var_t available_mask;
 	struct cpumask *alloced_mask;
+	u32 target_cpu;
+	int numa_node;
 
 	if ((vmbus_proto_version == VERSION_WS2008) ||
 	    (vmbus_proto_version == VERSION_WIN7) || (!perf_chn) ||
@@ -676,40 +705,38 @@ static void init_vp_index(struct vmbus_channel *channel, u16 dev_type)
 
 	spin_lock(&bind_channel_to_cpu_lock);
 
-	/*
-	 * Based on the channel affinity policy, we will assign the NUMA
-	 * nodes.
-	 */
-
-	if ((channel->affinity_policy == HV_BALANCED) || (!primary)) {
+	for (i = 1; i <= ncpu + 1; i++) {
 		while (true) {
-			next_node = next_numa_node_id++;
-			if (next_node == nr_node_ids) {
-				next_node = next_numa_node_id = 0;
+			numa_node = next_numa_node_id++;
+			if (numa_node == nr_node_ids) {
+				next_numa_node_id = 0;
 				continue;
 			}
-			if (cpumask_empty(cpumask_of_node(next_node)))
+			if (cpumask_empty(cpumask_of_node(numa_node)))
 				continue;
 			break;
 		}
-		channel->numa_node = next_node;
-		primary = channel;
+		alloced_mask = &hv_context.hv_numa_map[numa_node];
+
+		if (cpumask_weight(alloced_mask) ==
+		    cpumask_weight(cpumask_of_node(numa_node))) {
+			/*
+			 * We have cycled through all the CPUs in the node;
+			 * reset the alloced map.
+			 */
+			cpumask_clear(alloced_mask);
+		}
+
+		cpumask_xor(available_mask, alloced_mask,
+			    cpumask_of_node(numa_node));
+
+		target_cpu = cpumask_first(available_mask);
+		cpumask_set_cpu(target_cpu, alloced_mask);
+
+		if (channel->offermsg.offer.sub_channel_index >= ncpu ||
+		    i > ncpu || !hv_cpuself_used(target_cpu, channel))
+			break;
 	}
-	alloced_mask = &hv_context.hv_numa_map[primary->numa_node];
-
-	if (cpumask_weight(alloced_mask) ==
-	    cpumask_weight(cpumask_of_node(primary->numa_node))) {
-		/*
-		 * We have cycled through all the CPUs in the node;
-		 * reset the alloced map.
-		 */
-		cpumask_clear(alloced_mask);
-	}
-
-	cpumask_xor(available_mask, alloced_mask,
-		    cpumask_of_node(primary->numa_node));
-
-	cur_cpu = -1;
 
 	if (primary->affinity_policy == HV_LOCALIZED) {
 		/*
@@ -723,40 +750,8 @@ static void init_vp_index(struct vmbus_channel *channel, u16 dev_type)
 			cpumask_clear(&primary->alloced_cpus_in_node);
 	}
 
-	while (true) {
-		cur_cpu = cpumask_next(cur_cpu, available_mask);
-		if (cur_cpu >= nr_cpu_ids) {
-			cur_cpu = -1;
-			cpumask_copy(available_mask,
-				     cpumask_of_node(primary->numa_node));
-			continue;
-		}
-
-		if (primary->affinity_policy == HV_LOCALIZED) {
-			/*
-			 * NOTE: in the case of sub-channel, we clear the
-			 * sub-channel related bit(s) in
-			 * primary->alloced_cpus_in_node in
-			 * hv_process_channel_removal(), so when we
-			 * reload drivers like hv_netvsc in SMP guest, here
-			 * we're able to re-allocate
-			 * bit from primary->alloced_cpus_in_node.
-			 */
-			if (!cpumask_test_cpu(cur_cpu,
-					      &primary->alloced_cpus_in_node)) {
-				cpumask_set_cpu(cur_cpu,
-						&primary->alloced_cpus_in_node);
-				cpumask_set_cpu(cur_cpu, alloced_mask);
-				break;
-			}
-		} else {
-			cpumask_set_cpu(cur_cpu, alloced_mask);
-			break;
-		}
-	}
-
-	channel->target_cpu = cur_cpu;
-	channel->target_vp = hv_cpu_number_to_vp_number(cur_cpu);
+	channel->target_cpu = target_cpu;
+	channel->target_vp = hv_cpu_number_to_vp_number(target_cpu);
 
 	spin_unlock(&bind_channel_to_cpu_lock);
 
