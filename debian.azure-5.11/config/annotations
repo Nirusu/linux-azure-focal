@@ -4,6 +4,9 @@
 
 include "../../debian.master/config/annotations"
 
+CONFIG_RT_GROUP_SCHED                           policy<{'amd64': 'y'}>
+CONFIG_RT_GROUP_SCHED                           mark <ENFORCED> note<LP#1939024>
+
 CONFIG_SND_SOC_INTEL_USER_FRIENDLY_LONG_NAMES   policy<{'amd64': '-'}>
 CONFIG_SND_SOC_INTEL_USER_FRIENDLY_LONG_NAMES   mark<ENFORCED> note<LP:1921632>
 
