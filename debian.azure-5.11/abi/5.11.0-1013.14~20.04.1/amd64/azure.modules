@@ -1588,8 +1588,6 @@ ps2-gpio
 ps2mult
 psample
 psnap
-pstore_blk
-pstore_zone
 ptp_clockmatrix
 ptp_idt82p33
 ptp_kvm
