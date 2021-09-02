@@ -89,7 +89,7 @@ override_dh_auto_install:
 		flavour=$$(echo "$$signed" | sed -e "s@.*-$(abi)-@@");		\
 		instfile=$$(echo "$$signed" | sed -e "s@[^/]*/@@"		\
 			-e "s@-$(abi)-.*@@");					\
-		instdir=/usr/lib/linux/;					\
+		instdir=/usr/lib/linux/efi/;					\
 		verflav="$(abi)-$$flavour";					\
 										\
 		package="linux-image-unsigned-$$verflav-fde";			\
