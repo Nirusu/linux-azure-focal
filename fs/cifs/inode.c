@@ -1636,7 +1636,7 @@ int cifs_unlink(struct inode *dir, struct dentry *dentry)
 		goto unlink_out;
 	}
 
-	cifs_close_deferred_file(CIFS_I(inode));
+	cifs_close_deferred_file_under_dentry(tcon, full_path);
 	if (cap_unix(tcon->ses) && (CIFS_UNIX_POSIX_PATH_OPS_CAP &
 				le64_to_cpu(tcon->fsUnixInfo.Capability))) {
 		rc = CIFSPOSIXDelFile(xid, tcon, full_path,
@@ -2124,9 +2124,9 @@ cifs_rename2(struct inode *source_dir, struct dentry *source_dentry,
 		goto cifs_rename_exit;
 	}
 
-	cifs_close_deferred_file(CIFS_I(d_inode(source_dentry)));
+	cifs_close_deferred_file_under_dentry(tcon, from_name);
 	if (d_inode(target_dentry) != NULL)
-		cifs_close_deferred_file(CIFS_I(d_inode(target_dentry)));
+		cifs_close_deferred_file_under_dentry(tcon, to_name);
 
 	rc = cifs_do_rename(xid, source_dentry, from_name, target_dentry,
 			    to_name);
