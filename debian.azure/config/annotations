@@ -292,3 +292,9 @@ CONFIG_SAMPLE_TRACE_PRINTK                         note<Unnecessary for Azure>
 
 CONFIG_SPI_INTEL_SPI_PLATFORM                      policy<{'amd64': '-'}>
 CONFIG_SPI_INTEL_SPI_PLATFORM                      note<Unnecessary for Azure>
+
+CONFIG_ACCESSIBILITY                               policy<{'amd64': '-'}>
+CONFIG_ACCESSIBILITY                               note<Unnecessary for Azure>
+
+CONFIG_SPEAKUP                                     policy<{'amd64': '-'}>
+CONFIG_SPEAKUP                                     note<Unnecessary for Azure>
