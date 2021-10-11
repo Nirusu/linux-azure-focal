@@ -348,9 +348,8 @@ static void free_channel(struct vmbus_channel *channel)
 {
 	tasklet_kill(&channel->callback_event);
 	vmbus_remove_channel_attr_group(channel);
-
-	kobject_put(&channel->kobj);
 	hv_free_channel_ivm(channel);
+	kobject_put(&channel->kobj);
 }
 
 /*
@@ -530,7 +529,6 @@ static void vmbus_add_channel_work(struct work_struct *work)
 		goto err_deq_chan;
 
 	newchannel->device_obj->device_id = dev_type;
-
 	if (hv_init_channel_ivm(newchannel))
 		goto err_deq_chan;
 
