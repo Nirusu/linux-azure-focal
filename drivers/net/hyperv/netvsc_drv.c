@@ -2497,8 +2497,11 @@ static int netvsc_probe(struct hv_device *dev,
 
 	ret = hv_bounce_resources_reserve(dev->channel,
 			4 * PAGE_SIZE * 1024);
-	if (ret < 0)
-		return ret;
+	if (ret < 0) {
+		ret = -ENOMEM;
+		pr_err("Fail to reserve bounce buffer.\n");
+		goto hv_bounce_failed;
+	}
 
 	nvdev = rndis_filter_device_add(dev, device_info);
 	if (IS_ERR(nvdev)) {
@@ -2553,6 +2556,8 @@ register_failed:
 	rtnl_unlock();
 	rndis_filter_device_remove(dev, nvdev);
 rndis_failed:
+	hv_bounce_resources_free(dev->channel);
+hv_bounce_failed:
 	netvsc_devinfo_put(device_info);
 devinfo_failed:
 	free_percpu(net_device_ctx->vf_stats);
@@ -2560,6 +2565,7 @@ no_stats:
 	hv_set_drvdata(dev, NULL);
 	free_netdev(net);
 no_net:
+	pr_info("ret %d\n", ret);
 	return ret;
 }
 
