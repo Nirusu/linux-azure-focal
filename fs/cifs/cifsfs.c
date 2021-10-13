@@ -475,8 +475,7 @@ static int cifs_show_devname(struct seq_file *m, struct dentry *root)
 		seq_puts(m, "none");
 	else {
 		convert_delimiter(devname, '/');
-		/* escape all spaces in share names */
-		seq_escape(m, devname, " \t");
+		seq_puts(m, devname);
 		kfree(devname);
 	}
 	return 0;
