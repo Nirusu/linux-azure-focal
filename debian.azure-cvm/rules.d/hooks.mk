@@ -1,1 +1,0 @@
-uefi_signed = false
