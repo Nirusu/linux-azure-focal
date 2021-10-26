@@ -23,9 +23,6 @@ obj-$(CONFIG_UBUNTU_HOST)      += ubuntu-host/
 ##
 ##
 ##
-ifeq ($(ARCH),x86)
-obj-$(CONFIG_USB)             += xr-usb-serial/
-endif
 ##
 ##
 ##
