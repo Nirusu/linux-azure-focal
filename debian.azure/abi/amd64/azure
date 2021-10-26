@@ -6615,7 +6615,6 @@ EXPORT_SYMBOL	 vmlinux 0x92575fff	get_cached_acl
 EXPORT_SYMBOL	 vmlinux 0x9258c776	hdmi_vendor_infoframe_pack_only
 EXPORT_SYMBOL	 vmlinux 0x926e17c7	tty_insert_flip_string_fixed_flag
 EXPORT_SYMBOL	 vmlinux 0x9275278f	dcache_dir_open
-EXPORT_SYMBOL	 vmlinux 0x92774cf8	__kfence_pool
 EXPORT_SYMBOL	 vmlinux 0x9283a730	input_get_timestamp
 EXPORT_SYMBOL	 vmlinux 0x92868a63	vfs_fileattr_get
 EXPORT_SYMBOL	 vmlinux 0x92895398	kmem_cache_create_usercopy
