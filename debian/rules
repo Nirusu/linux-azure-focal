@@ -86,31 +86,33 @@ override_dh_auto_build:
 
 override_dh_auto_install:
 	for signed in "EFI"/*; do						\
-		flavour=$$(echo "$$signed" | sed -e "s@.*-$(abi)-@@");		\
+		base_flavour=$$(echo "$$signed" | sed -e "s@.*-$(abi)-@@");	\
+		flavour="$${base_flavour%-*}-fde";				\
 		instfile=$$(echo "$$signed" | sed -e "s@[^/]*/@@"		\
 			-e "s@-$(abi)-.*@@");					\
 		instdir=/usr/lib/linux/efi/;					\
+		base_verflav="$(abi)-$$base_flavour";				\
 		verflav="$(abi)-$$flavour";					\
 										\
-		package="linux-image-unsigned-$$verflav-fde";			\
+		package="linux-image-unsigned-$$verflav";			\
 		echo "$$package: adding $$signed";				\
 		echo "$$signed $$instdir" >>"debian/$$package.install";		\
 										\
 		./generate-depends						\
-			linux-image-unsigned-$$verflav $(unsigned_ver)		\
+			linux-image-unsigned-$$base_verflav $(unsigned_ver)	\
 			linux-image-$$verflav >> 				\
-			"debian/linux-image-unsigned-$$verflav-fde.substvars";	\
+			"debian/linux-image-unsigned-$$verflav.substvars";	\
 										\
 		for which in postinst postrm preinst prerm; do			\
 			template="debian/templates/image.$$which.in";		\
 			script="debian/$$package.$$which";			\
 			sed -e "s/@abiname@/$(abi)/g"				\
-			    -e "s/@localversion@/-$$flavour/g"			\
+			    -e "s/@localversion@/-$$base_flavour/g"		\
 			    -e "s/@image-stem@/$$instfile/g"			\
 			    -e "s,@install-dir@,$$instdir,g"			\
 				<"$$template" >"$$script";			\
 		done;								\
-		echo "interest linux-update-$(abi)-$$flavour"	 		\
+		echo "interest linux-update-$(abi)-$$base_flavour"	 	\
 			>"debian/$$package.triggers";				\
 	done
 	dh_install
