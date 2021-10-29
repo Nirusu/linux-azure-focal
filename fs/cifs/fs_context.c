@@ -1258,17 +1258,10 @@ static int smb3_fs_context_parse_param(struct fs_context *fc,
 			ctx->posix_paths = 1;
 		break;
 	case Opt_unix:
-		if (result.negated) {
-			if (ctx->linux_ext == 1)
-				pr_warn_once("conflicting posix mount options specified\n");
+		if (result.negated)
 			ctx->linux_ext = 0;
+		else
 			ctx->no_linux_ext = 1;
-		} else {
-			if (ctx->no_linux_ext == 1)
-				pr_warn_once("conflicting posix mount options specified\n");
-			ctx->linux_ext = 1;
-			ctx->no_linux_ext = 0;
-		}
 		break;
 	case Opt_nocase:
 		ctx->nocase = 1;
