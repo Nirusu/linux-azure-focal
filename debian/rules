@@ -170,3 +170,6 @@ startnewrelease:
 	echo -e "\n -- $$DEBFULLNAME <$$DEBEMAIL>  $$now\n" >>$(DEBIAN)/changelog.new;	\
 	cat "$(DEBIAN)"/changelog >> "$(DEBIAN)"/changelog.new;				\
 	mv "$(DEBIAN)"/changelog.new "$(DEBIAN)"/changelog
+
+updateconfigs:
+	@echo "EFI kernel: skipping updateconfigs target!"
