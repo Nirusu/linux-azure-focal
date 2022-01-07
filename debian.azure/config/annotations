@@ -4,6 +4,13 @@
 
 include "../../debian.master/config/annotations"
 
+CONFIG_CMA                                      policy<{'amd64': 'n', 'arm64': 'n'}>
+CONFIG_CMA                                      mark<ENFORCED> note<LP:1956762>
+
+CONFIG_DMA_CMA                                  policy<{'arm64': '-'}>
+CONFIG_DMA_CMA                                  mark<ENFORCED> note<LP#1956762>
+CONFIG_CMA_SIZE_MBYTES                          policy<{'arm64': '-'}>
+CONFIG_CMA_SIZE_MBYTES                          mark<ENFORCED> note<LP#1956762>
 CONFIG_XEN                                      policy<{'amd64': '-', 'arm64': '-'}>
 CONFIG_SPEAKUP                                  policy<{'amd64': '-', 'arm64': '-'}>
 
