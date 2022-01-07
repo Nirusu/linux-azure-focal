@@ -301,3 +301,4 @@ CONFIG_ACCESSIBILITY                               note<Unnecessary for Azure>
 
 CONFIG_SPEAKUP                                     policy<{'amd64': '-'}>
 CONFIG_SPEAKUP                                     note<Unnecessary for Azure>
+CONFIG_DEBUG_INFO_BTF                           policy<{'amd64': 'n', 'arm64': 'n', 'armhf': 'n', 'ppc64el': 'n', 's390x': 'n'}>
