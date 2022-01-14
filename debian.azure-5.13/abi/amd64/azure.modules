@@ -188,6 +188,7 @@ atomisp_gmin_platform
 atp
 atp870u
 atxp1
+aufs
 auth_rpcgss
 authenc
 authencesn
