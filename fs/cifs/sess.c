@@ -1578,7 +1578,7 @@ out_free_ntlmsspblob:
 out:
 	sess_free_buffer(sess_data);
 
-	 if (!rc)
+	if (!rc)
 		rc = sess_establish_session(sess_data);
 
 	/* Cleanup */
