@@ -1107,11 +1107,17 @@ static int dup_vol(struct smb_vol *vol, struct smb_vol *new)
 		if (!new->domainname)
 			goto err_free_unc;
 	}
+	if (vol->server_hostname) {
+		new->server_hostname = kstrndup(vol->server_hostname,
+					  strlen(vol->server_hostname), GFP_KERNEL);
+		if (!new->server_hostname)
+			goto err_free_domainname;
+	}
 	if (vol->iocharset) {
 		new->iocharset = kstrndup(vol->iocharset,
 					  strlen(vol->iocharset), GFP_KERNEL);
 		if (!new->iocharset)
-			goto err_free_domainname;
+			goto err_free_server_hostname;
 	}
 	if (vol->prepath) {
 		cifs_dbg(FYI, "%s: vol->prepath: %s\n", __func__, vol->prepath);
@@ -1125,6 +1131,8 @@ static int dup_vol(struct smb_vol *vol, struct smb_vol *new)
 
 err_free_iocharset:
 	kfree(new->iocharset);
+err_free_server_hostname:
+	kfree(new->server_hostname);
 err_free_domainname:
 	kfree(new->domainname);
 err_free_unc:
