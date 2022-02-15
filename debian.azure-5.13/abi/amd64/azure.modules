@@ -292,6 +292,9 @@ ceph
 cfag12864b
 cfag12864bfb
 cfb
+cfbcopyarea
+cfbfillrect
+cfbimgblt
 cfg80211
 ch
 ch_ipsec
@@ -438,6 +441,7 @@ drivetemp
 drm
 drm_kms_helper
 drm_mipi_dbi
+drm_panel_orientation_quirks
 drm_ttm_helper
 drm_vram_helper
 ds1621
@@ -1244,6 +1248,7 @@ most_video
 moxa
 mp2629
 mp8859
+mpi3mr
 mpls_gso
 mpls_iptunnel
 mpls_router
@@ -2028,6 +2033,7 @@ tag_gswip
 tag_ksz
 tag_lan9303
 tag_mtk
+tag_ocelot
 tag_qca
 tag_rtl4_a
 tag_sja1105
