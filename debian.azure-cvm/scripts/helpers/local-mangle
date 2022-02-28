@@ -40,7 +40,7 @@ variant=
 # shellcheck disable=SC1090
 . "${DEBIAN}/etc/kernelconfig"
 
-# FIPS configs should be in the common config file
+# Configs should be in the common config file
 config_file="${DEBIAN}/config/config.common.ubuntu"
 annot_file="${DEBIAN}/config/annotations"
 for config in "${configs[@]}"; do
@@ -60,6 +60,6 @@ for config in "${configs[@]}"; do
 			echo -n "'${arch}': '${val:--}',"
 		done
 		echo "}>"
-		echo -e "${key}\tmark<ENFORCED> note<FIPS>"
+		echo -e "${key}\tmark<ENFORCED> note<backport change>"
 	} >> "$annot_file"
 done
