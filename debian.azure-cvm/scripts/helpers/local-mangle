@@ -31,6 +31,7 @@ sed -i 's/^\(flavours\s*=\s*\).*/\1'"${flavour}"'/' "${DEBIAN}/rules.d/"*.mk
 
 # Update config options and the annotations file.
 configs=(
+	CONFIG_HYPERV_AZURE_BLOB=n
 )
 
 # Load archs supported in the configs
