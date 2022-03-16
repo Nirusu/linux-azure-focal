@@ -292,3 +292,5 @@ CONFIG_MTD_DOCG3                                   mark<ENFORCED> note<LP:179220
 
 CONFIG_SAMPLE_TRACE_PRINTK                         policy<{'amd64': '-'}>
 CONFIG_SAMPLE_TRACE_PRINTK                         mark<ENFORCED> note<not required by LP:#1877958>
+CONFIG_HYPERV_AZURE_BLOB	policy<{'amd64': 'n',}>
+CONFIG_HYPERV_AZURE_BLOB	mark<ENFORCED> note<backport change>
