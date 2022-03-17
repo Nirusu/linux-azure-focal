@@ -49,6 +49,7 @@
 #include <linux/refcount.h>
 #include <linux/irqdomain.h>
 #include <linux/acpi.h>
+#include <linux/dma-map-ops.h>
 #include <asm/mshyperv.h>
 
 /*
@@ -2147,9 +2148,9 @@ static void hv_pci_remove_slots(struct hv_pcibus_device *hbus)
 }
 
 /*
- * Set NUMA node for the devices on the bus
+ * Set NUMA node and DMA coherence for the devices on the bus
  */
-static void hv_pci_assign_numa_node(struct hv_pcibus_device *hbus)
+static void hv_pci_assign_properties(struct hv_pcibus_device *hbus)
 {
 	struct pci_dev *dev;
 	struct pci_bus *bus = hbus->bridge->bus;
@@ -2171,6 +2172,14 @@ static void hv_pci_assign_numa_node(struct hv_pcibus_device *hbus)
 			set_dev_node(&dev->dev,
 				     numa_map_to_online_node(
 					     hv_dev->desc.virtual_numa_node));
+
+		/*
+		 * On ARM64, propagate the DMA coherence from the VMbus device
+		 * to the corresponding PCI device. On x86/x64, these calls
+		 * have no effect because DMA is always hardware coherent.
+		 */
+		dev_set_dma_coherent(&dev->dev,
+			dev_is_dma_coherent(&hbus->hdev->device));
 
 		put_pcichild(hv_dev);
 	}
@@ -2196,7 +2205,7 @@ static int create_root_hv_pci_bus(struct hv_pcibus_device *hbus)
 		return error;
 
 	pci_lock_rescan_remove();
-	hv_pci_assign_numa_node(hbus);
+	hv_pci_assign_properties(hbus);
 	pci_bus_assign_resources(bridge->bus);
 	hv_pci_assign_slots(hbus);
 	pci_bus_add_devices(bridge->bus);
@@ -2465,7 +2474,7 @@ static void pci_devices_present_work(struct work_struct *work)
 		 */
 		pci_lock_rescan_remove();
 		pci_scan_child_bus(hbus->bridge->bus);
-		hv_pci_assign_numa_node(hbus);
+		hv_pci_assign_properties(hbus);
 		hv_pci_assign_slots(hbus);
 		pci_unlock_rescan_remove();
 		break;
