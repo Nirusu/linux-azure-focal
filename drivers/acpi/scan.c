@@ -1440,6 +1440,7 @@ enum dev_dma_attr acpi_get_dma_attr(struct acpi_device *adev)
 	else
 		return DEV_DMA_NON_COHERENT;
 }
+EXPORT_SYMBOL_GPL(acpi_get_dma_attr);
 
 /**
  * acpi_dma_get_range() - Get device DMA parameters.
