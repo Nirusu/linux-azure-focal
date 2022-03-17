@@ -25,7 +25,9 @@ endif
 ##
 ##
 ##
+ifeq ($(ARCH),x86)
 obj-y += sgx/
+endif
 ##
 ##
 ##
