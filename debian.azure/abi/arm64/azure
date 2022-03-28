@@ -13381,6 +13381,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x0902b920	sysfs_group_change_owner
 EXPORT_SYMBOL_GPL	 vmlinux 0x0907d14d	blocking_notifier_chain_register
 EXPORT_SYMBOL_GPL	 vmlinux 0x091d479c	phy_pm_runtime_get_sync
 EXPORT_SYMBOL_GPL	 vmlinux 0x091eb9b4	round_jiffies
+EXPORT_SYMBOL_GPL	 vmlinux 0x09228e14	acpi_get_dma_attr
 EXPORT_SYMBOL_GPL	 vmlinux 0x092eab3f	ata_dummy_port_ops
 EXPORT_SYMBOL_GPL	 vmlinux 0x09337cd0	__wake_up_locked_key
 EXPORT_SYMBOL_GPL	 vmlinux 0x093786cf	synth_event_add_field_str
