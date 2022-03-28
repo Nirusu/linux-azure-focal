@@ -15116,6 +15116,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x563bf4a5	fwnode_get_nth_parent
 EXPORT_SYMBOL_GPL	 vmlinux 0x563d2c74	crypto_alloc_akcipher
 EXPORT_SYMBOL_GPL	 vmlinux 0x5641485b	tty_termios_encode_baud_rate
 EXPORT_SYMBOL_GPL	 vmlinux 0x564aa750	device_add
+EXPORT_SYMBOL_GPL	 vmlinux 0x566a0e99	acpi_get_dma_attr
 EXPORT_SYMBOL_GPL	 vmlinux 0x566db4bc	phy_create_lookup
 EXPORT_SYMBOL_GPL	 vmlinux 0x566f9bc8	pkcs7_parse_message
 EXPORT_SYMBOL_GPL	 vmlinux 0x5674b3cb	rhashtable_free_and_destroy
