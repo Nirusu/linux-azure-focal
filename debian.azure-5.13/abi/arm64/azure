@@ -17323,6 +17323,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0xa0146f66	fat_get_dotdot_entry
 EXPORT_SYMBOL_GPL	 vmlinux 0xa01a8d9b	nd_cmd_bus_desc
 EXPORT_SYMBOL_GPL	 vmlinux 0xa0280a0d	ip6_sk_dst_lookup_flow
 EXPORT_SYMBOL_GPL	 vmlinux 0xa02df138	md_stop_writes
+EXPORT_SYMBOL_GPL	 vmlinux 0xa044011e	acpi_get_dma_attr
 EXPORT_SYMBOL_GPL	 vmlinux 0xa046636e	nfs42_ssc_register
 EXPORT_SYMBOL_GPL	 vmlinux 0xa04a4d6b	ip_tunnel_encap_setup
 EXPORT_SYMBOL_GPL	 vmlinux 0xa04f3670	pci_epc_mem_alloc_addr
