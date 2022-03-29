@@ -13103,6 +13103,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x006fc99b	events_hybrid_sysfs_show
 EXPORT_SYMBOL_GPL	 vmlinux 0x0074bafe	simple_attr_write
 EXPORT_SYMBOL_GPL	 vmlinux 0x007a4b96	spi_busnum_to_master
 EXPORT_SYMBOL_GPL	 vmlinux 0x008539f0	klp_shadow_alloc
+EXPORT_SYMBOL_GPL	 vmlinux 0x00c42a9a	acpi_get_dma_attr
 EXPORT_SYMBOL_GPL	 vmlinux 0x00d103d2	__traceiter_kfree_skb
 EXPORT_SYMBOL_GPL	 vmlinux 0x00d3dd4f	dev_pm_qos_add_ancestor_request
 EXPORT_SYMBOL_GPL	 vmlinux 0x00d4c500	usb_decode_interval
