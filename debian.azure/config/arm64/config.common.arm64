@@ -1506,7 +1506,6 @@ CONFIG_WLAN=y
 # CONFIG_XDP_SOCKETS is not set
 CONFIG_XEN=y
 # CONFIG_XFRM_USER is not set
-# CONFIG_XFS_FS is not set
 # CONFIG_XILINX_SDFEC is not set
 # CONFIG_XILINX_VCU is not set
 # CONFIG_XILINX_WATCHDOG is not set
