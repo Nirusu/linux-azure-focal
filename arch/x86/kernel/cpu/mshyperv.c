@@ -343,6 +343,7 @@ static void __init ms_hyperv_init_platform(void)
 		 * use swiotlb bounce buffer for dma transaction.
 		 */
 		swiotlb_force = SWIOTLB_FORCE;
+		swiotlb_set_alloc_from_low_pages(false);
 #endif
 	}
 
