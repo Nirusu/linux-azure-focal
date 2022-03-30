@@ -73,6 +73,8 @@ enum swiotlb_force swiotlb_force;
 
 struct io_tlb_mem io_tlb_default_mem;
 
+static bool swiotlb_alloc_from_low_pages = true;
+
 phys_addr_t swiotlb_unencrypted_base;
 
 /*
@@ -114,6 +116,11 @@ void swiotlb_set_max_segment(unsigned int val)
 		max_segment = 1;
 	else
 		max_segment = rounddown(val, PAGE_SIZE);
+}
+
+void swiotlb_set_alloc_from_low_pages(bool low)
+{
+	swiotlb_alloc_from_low_pages = low;
 }
 
 unsigned long swiotlb_size_or_default(void)
@@ -284,8 +291,15 @@ swiotlb_init(int verbose)
 	if (swiotlb_force == SWIOTLB_NO_FORCE)
 		return;
 
-	/* Get IO TLB memory from the low pages */
-	tlb = memblock_alloc_low(bytes, PAGE_SIZE);
+	/*
+	 * Get IO TLB memory from the low pages if swiotlb_alloc_from_low_pages
+	 * is set.
+	 */
+	if (swiotlb_alloc_from_low_pages)
+		tlb = memblock_alloc_low(bytes, PAGE_SIZE);
+	else
+		tlb = memblock_alloc(bytes, PAGE_SIZE);
+
 	if (!tlb)
 		goto fail;
 	if (swiotlb_init_with_tbl(tlb, default_nslabs, verbose))
