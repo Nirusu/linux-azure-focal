@@ -4,6 +4,9 @@
 
 include "../../debian.master/config/annotations"
 
+CONFIG_HIBERNATION                                 policy<{'amd64': 'y', 'arm64': 'y'}>
+CONFIG_HIBERNATION                                 mark<ENFORCED> note<LP:1967336>
+
 CONFIG_SCSI_FC_ATTRS                               policy<{'amd64': 'y', 'arm64': 'y'}>
 CONFIG_SCSI_FC_ATTRS                               mark<ENFORCED> note<Azure instances have no initrd>
 
