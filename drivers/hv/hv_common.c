@@ -13,7 +13,6 @@
  */
 
 #include <linux/types.h>
-#include <linux/acpi.h>
 #include <linux/export.h>
 #include <linux/bitfield.h>
 #include <linux/cpumask.h>
@@ -70,16 +69,6 @@ void __init hv_common_free(void)
 int __init hv_common_init(void)
 {
 	int i;
-
-	/*
-	 * Hyper-V expects to get crash register data or kmsg when
-	 * crash enlightment is available and system crashes. Set
-	 * crash_kexec_post_notifiers to be true to make sure that
-	 * calling crash enlightment interface before running kdump
-	 * kernel.
-	 */
-	if (ms_hyperv.misc_features & HV_FEATURE_GUEST_CRASH_MSR_AVAILABLE)
-		crash_kexec_post_notifiers = true;
 
 	/*
 	 * Allocate the per-CPU state for the hypercall input arg.
@@ -214,12 +203,6 @@ bool hv_query_ext_cap(u64 cap_query)
 	return hv_extended_cap & cap_query;
 }
 EXPORT_SYMBOL_GPL(hv_query_ext_cap);
-
-bool hv_is_hibernation_supported(void)
-{
-	return !hv_root_partition && acpi_sleep_state_supported(ACPI_STATE_S4);
-}
-EXPORT_SYMBOL_GPL(hv_is_hibernation_supported);
 
 /* These __weak functions provide default "no-op" behavior and
  * may be overridden by architecture specific versions. Architectures
