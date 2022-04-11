@@ -32,6 +32,7 @@
 #include <clocksource/hyperv_timer.h>
 
 struct ms_hyperv_info ms_hyperv;
+EXPORT_SYMBOL_GPL(ms_hyperv);
 
 #if IS_ENABLED(CONFIG_HYPERV)
 static void (*vmbus_handler)(void);
