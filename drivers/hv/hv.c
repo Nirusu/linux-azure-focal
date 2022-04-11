@@ -184,7 +184,11 @@ void hv_synic_enable_regs(unsigned int cpu)
 
 	shared_sint.vector = HYPERVISOR_CALLBACK_VECTOR;
 	shared_sint.masked = false;
-	shared_sint.auto_eoi = hv_recommend_using_aeoi();
+	if (ms_hyperv.hints & HV_DEPRECATING_AEOI_RECOMMENDED)
+		shared_sint.auto_eoi = false;
+	else
+		shared_sint.auto_eoi = true;
+
 	hv_set_synint_state(VMBUS_MESSAGE_SINT, shared_sint.as_uint64);
 
 	/* Enable the global synic bit */
