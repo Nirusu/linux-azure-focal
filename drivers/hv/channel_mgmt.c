@@ -1396,8 +1396,13 @@ channel_message_table[CHANNELMSG_COUNT] = {
  *
  * This is invoked in the vmbus worker thread context.
  */
-void vmbus_onmessage(struct vmbus_channel_message_header *hdr)
+void vmbus_onmessage(void *context)
 {
+	struct hv_message *msg = context;
+	struct vmbus_channel_message_header *hdr;
+
+	hdr = (struct vmbus_channel_message_header *)msg->u.payload;
+
 	trace_vmbus_on_message(hdr);
 
 	/*
