@@ -246,7 +246,7 @@ static const struct apic apic_numachip1 __refconst = {
 	.apic_id_valid			= numachip_apic_id_valid,
 	.apic_id_registered		= numachip_apic_id_registered,
 
-	.delivery_mode			= APIC_DELIVERY_MODE_FIXED,
+	.irq_delivery_mode		= dest_Fixed,
 	.irq_dest_mode			= 0, /* physical */
 
 	.disable_esr			= 0,
@@ -295,7 +295,7 @@ static const struct apic apic_numachip2 __refconst = {
 	.apic_id_valid			= numachip_apic_id_valid,
 	.apic_id_registered		= numachip_apic_id_registered,
 
-	.delivery_mode			= APIC_DELIVERY_MODE_FIXED,
+	.irq_delivery_mode		= dest_Fixed,
 	.irq_dest_mode			= 0, /* physical */
 
 	.disable_esr			= 0,
