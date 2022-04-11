@@ -42,17 +42,29 @@ EXPORT_SYMBOL_GPL(vmbus_connection);
 __u32 vmbus_proto_version;
 EXPORT_SYMBOL_GPL(vmbus_proto_version);
 
-/*
- * Table of VMBus versions listed from newest to oldest.
- */
-static __u32 vmbus_versions[] = {
-	VERSION_WIN10_V5,
-	VERSION_WIN10,
-	VERSION_WIN8_1,
-	VERSION_WIN8,
-	VERSION_WIN7,
-	VERSION_WS2008
-};
+static __u32 vmbus_get_next_version(__u32 current_version)
+{
+	switch (current_version) {
+	case (VERSION_WIN7):
+		return VERSION_WS2008;
+
+	case (VERSION_WIN8):
+		return VERSION_WIN7;
+
+	case (VERSION_WIN8_1):
+		return VERSION_WIN8;
+
+	case (VERSION_WIN10):
+		return VERSION_WIN8_1;
+
+	case (VERSION_WIN10_V5):
+		return VERSION_WIN10;
+
+	case (VERSION_WS2008):
+	default:
+		return VERSION_INVAL;
+	}
+}
 
 int vmbus_negotiate_version(struct vmbus_channel_msginfo *msginfo, u32 version)
 {
@@ -141,8 +153,8 @@ int vmbus_negotiate_version(struct vmbus_channel_msginfo *msginfo, u32 version)
  */
 int vmbus_connect(void)
 {
+	int ret = 0;
 	struct vmbus_channel_msginfo *msginfo = NULL;
-	int i, ret = 0;
 	__u32 version;
 
 	/* Initialize the vmbus connection */
@@ -216,19 +228,21 @@ int vmbus_connect(void)
 	 * version.
 	 */
 
-	for (i = 0; ; i++) {
-		if (i == ARRAY_SIZE(vmbus_versions))
-			goto cleanup;
+	version = VERSION_CURRENT;
 
-		version = vmbus_versions[i];
-
+	do {
 		ret = vmbus_negotiate_version(msginfo, version);
 		if (ret == -ETIMEDOUT)
 			goto cleanup;
 
 		if (vmbus_connection.conn_state == CONNECTED)
 			break;
-	}
+
+		version = vmbus_get_next_version(version);
+	} while (version != VERSION_INVAL);
+
+	if (version == VERSION_INVAL)
+		goto cleanup;
 
 	vmbus_proto_version = version;
 	pr_info("Vmbus version:%d.%d\n",
