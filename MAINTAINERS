@@ -7628,8 +7628,6 @@ F:	drivers/video/fbdev/hyperv_fb.c
 F:	drivers/iommu/hyperv-iommu.c
 F:	drivers/net/ethernet/microsoft/
 F:	net/vmw_vsock/hyperv_transport.c
-F:	include/asm-generic/hyperv-tlfs.h
-F:	include/asm-generic/mshyperv.h
 F:	include/clocksource/hyperv_timer.h
 F:	include/linux/hyperv.h
 F:	include/uapi/linux/hyperv.h
