@@ -40,7 +40,6 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/pci.h>
-#include <linux/pci-ecam.h>
 #include <linux/delay.h>
 #include <linux/semaphore.h>
 #include <linux/irqdomain.h>
@@ -479,11 +478,7 @@ enum hv_pcibus_state {
 };
 
 struct hv_pcibus_device {
-#ifdef CONFIG_X86
 	struct pci_sysdata sysdata;
-#elif defined(CONFIG_ARM64)
-	struct pci_config_window sysdata;
-#endif
 	struct pci_host_bridge *bridge;
 	struct fwnode_handle *fwnode;
 	/* Protocol version negotiated with the host */
@@ -3198,9 +3193,7 @@ static int hv_pci_probe(struct hv_device *hdev,
 			 dom_req, dom);
 
 	hbus->bridge->domain_nr = dom;
-#ifdef CONFIG_X86
 	hbus->sysdata.domain = dom;
-#endif
 
 	hbus->hdev = hdev;
 	INIT_LIST_HEAD(&hbus->children);
