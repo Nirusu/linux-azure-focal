@@ -189,7 +189,7 @@ static int __vmbus_open(struct vmbus_channel *newchannel,
 	open_msg->child_relid = newchannel->offermsg.child_relid;
 	open_msg->ringbuffer_gpadlhandle = newchannel->ringbuffer_gpadlhandle;
 	open_msg->downstream_ringbuffer_pageoffset = newchannel->ringbuffer_send_offset;
-	open_msg->target_vp = hv_cpu_number_to_vp_number(newchannel->target_cpu);
+	open_msg->target_vp = newchannel->target_vp;
 
 	if (userdatalen)
 		memcpy(open_msg->userdata, userdata, userdatalen);
