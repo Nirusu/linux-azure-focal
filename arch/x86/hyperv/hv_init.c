@@ -65,7 +65,7 @@ static int hv_cpu_init(unsigned int cpu)
 		return -ENOMEM;
 	*input_arg = page_address(pg);
 
-	msr_vp_index = hv_get_register(HV_REGISTER_VP_INDEX);
+	hv_get_vp_index(msr_vp_index);
 
 	hv_vp_index[smp_processor_id()] = msr_vp_index;
 
