@@ -635,12 +635,9 @@ void netvsc_device_remove(struct hv_device *device)
 
 	RCU_INIT_POINTER(net_device_ctx->nvdev, NULL);
 
-	/* Disable NAPI and disassociate its context from the device. */
-	for (i = 0; i < net_device->num_chn; i++) {
-		/* See also vmbus_reset_channel_cb(). */
-		napi_disable(&net_device->chan_table[i].napi);
+	/* And disassociate NAPI context from device */
+	for (i = 0; i < net_device->num_chn; i++)
 		netif_napi_del(&net_device->chan_table[i].napi);
-	}
 
 	/*
 	 * At this point, no one should be accessing net_device
