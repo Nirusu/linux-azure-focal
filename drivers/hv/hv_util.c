@@ -18,6 +18,7 @@
 #include <linux/clockchips.h>
 #include <linux/ptp_clock_kernel.h>
 #include <asm/mshyperv.h>
+#include <clocksource/hyperv_timer.h>
 
 #include "hyperv_vmbus.h"
 
@@ -298,7 +299,7 @@ static int hv_get_adj_host_time(struct timespec64 *ts)
 	int ret = 0;
 
 	spin_lock_irqsave(&host_ts.lock, flags);
-	reftime = hv_read_reference_counter();
+	reftime = hyperv_cs->read(hyperv_cs);
 
 	/*
 	 * We need to let the caller know that last update from host
@@ -353,7 +354,7 @@ static inline void adj_guesttime(u64 hosttime, u64 reftime, u8 adj_flags)
 	 */
 	spin_lock_irqsave(&host_ts.lock, flags);
 
-	cur_reftime = hv_read_reference_counter();
+	cur_reftime = hyperv_cs->read(hyperv_cs);
 	host_ts.host_time = hosttime;
 	host_ts.ref_time = cur_reftime;
 
@@ -430,7 +431,7 @@ static void timesync_onchannelcallback(void *context)
 					sizeof(struct vmbuspipe_hdr) +
 					sizeof(struct icmsg_hdr)];
 				adj_guesttime(timedatap->parenttime,
-					      hv_read_reference_counter(),
+					      hyperv_cs->read(hyperv_cs),
 					      timedatap->flags);
 			}
 		}
@@ -680,7 +681,7 @@ static struct ptp_clock *hv_ptp_clock;
 static int hv_timesync_init(struct hv_util_service *srv)
 {
 	/* TimeSync requires Hyper-V clocksource. */
-	if (!hv_read_reference_counter)
+	if (!hyperv_cs)
 		return -ENODEV;
 
 	spin_lock_init(&host_ts.lock);
