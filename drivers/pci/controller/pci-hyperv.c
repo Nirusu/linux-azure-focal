@@ -1860,19 +1860,7 @@ static struct irq_chip hv_msi_irq_chip = {
 	.irq_unmask		= hv_irq_unmask,
 };
 
-#ifdef CONFIG_X86
-static irq_hw_number_t hv_msi_domain_ops_get_hwirq(struct msi_domain_info *info,
-													msi_alloc_info_t *arg)
-{
-	return arg->msi_hwirq;
-}
-#endif
-
 static struct msi_domain_ops hv_msi_ops = {
-#ifdef CONFIG_X86
-	.get_hwirq		= hv_msi_domain_ops_get_hwirq,
-	.set_desc		= pci_msi_set_desc,
-#endif
 	.msi_prepare	= hv_msi_prepare,
 	.msi_free	= hv_msi_free,
 };
@@ -2176,8 +2164,17 @@ static void hv_pci_assign_numa_node(struct hv_pcibus_device *hbus)
 		if (!hv_dev)
 			continue;
 
-		if (hv_dev->desc.flags & HV_PCI_DEVICE_FLAG_NUMA_AFFINITY)
-			set_dev_node(&dev->dev, hv_dev->desc.virtual_numa_node);
+		if (hv_dev->desc.flags & HV_PCI_DEVICE_FLAG_NUMA_AFFINITY &&
+		    hv_dev->desc.virtual_numa_node < num_possible_nodes())
+			/*
+			 * The kernel may boot with some NUMA nodes offline
+			 * (e.g. in a KDUMP kernel) or with NUMA disabled via
+			 * "numa=off". In those cases, adjust the host provided
+			 * NUMA node to a valid NUMA node used by the kernel.
+			 */
+			set_dev_node(&dev->dev,
+				     numa_map_to_online_node(
+					     hv_dev->desc.virtual_numa_node));
 
 		put_pcichild(hv_dev);
 	}
