@@ -36,8 +36,17 @@ void hyperv_reenlightenment_vector(void);
 #define trace_hyperv_callback_vector hyperv_callback_vector
 #endif
 void hyperv_vector_handler(struct pt_regs *regs);
+
+/*
+ * Routines for stimer0 Direct Mode handling.
+ * On x86/x64, there are no percpu actions to take.
+ */
 void hv_stimer0_vector_handler(struct pt_regs *regs);
 void hv_stimer0_callback_vector(void);
+
+static inline void hv_enable_stimer0_percpu_irq(int irq) {}
+static inline void hv_disable_stimer0_percpu_irq(int irq) {}
+
 
 #if IS_ENABLED(CONFIG_HYPERV)
 extern void *hv_hypercall_pg;
