@@ -406,6 +406,7 @@ static void vmbus_release_relid(u32 relid)
 
 void hv_process_channel_removal(struct vmbus_channel *channel)
 {
+	struct vmbus_channel *primary_channel;
 	unsigned long flags;
 
 	lockdep_assert_held(&vmbus_connection.channel_mutex);
@@ -430,8 +431,10 @@ void hv_process_channel_removal(struct vmbus_channel *channel)
 
 	if (channel->primary_channel == NULL) {
 		list_del(&channel->listentry);
+
+		primary_channel = channel;
 	} else {
-		struct vmbus_channel *primary_channel = channel->primary_channel;
+		primary_channel = channel->primary_channel;
 		spin_lock_irqsave(&primary_channel->lock, flags);
 		list_del(&channel->sc_list);
 		spin_unlock_irqrestore(&primary_channel->lock, flags);
