@@ -406,6 +406,8 @@ static void vmbus_release_relid(u32 relid)
 
 void hv_process_channel_removal(struct vmbus_channel *channel)
 {
+	unsigned long flags;
+
 	lockdep_assert_held(&vmbus_connection.channel_mutex);
 	BUG_ON(!channel->rescind);
 
@@ -426,10 +428,14 @@ void hv_process_channel_removal(struct vmbus_channel *channel)
 	if (channel->offermsg.child_relid != INVALID_RELID)
 		vmbus_channel_unmap_relid(channel);
 
-	if (channel->primary_channel == NULL)
+	if (channel->primary_channel == NULL) {
 		list_del(&channel->listentry);
-	else
+	} else {
+		struct vmbus_channel *primary_channel = channel->primary_channel;
+		spin_lock_irqsave(&primary_channel->lock, flags);
 		list_del(&channel->sc_list);
+		spin_unlock_irqrestore(&primary_channel->lock, flags);
+	}
 
 	/*
 	 * If this is a "perf" channel, updates the hv_numa_map[] masks so that
@@ -470,6 +476,7 @@ static void vmbus_add_channel_work(struct work_struct *work)
 	struct vmbus_channel *newchannel =
 		container_of(work, struct vmbus_channel, add_channel_work);
 	struct vmbus_channel *primary_channel = newchannel->primary_channel;
+	unsigned long flags;
 	int ret;
 
 	/*
@@ -530,10 +537,13 @@ err_deq_chan:
 	 */
 	newchannel->probe_done = true;
 
-	if (primary_channel == NULL)
+	if (primary_channel == NULL) {
 		list_del(&newchannel->listentry);
-	else
+	} else {
+		spin_lock_irqsave(&primary_channel->lock, flags);
 		list_del(&newchannel->sc_list);
+		spin_unlock_irqrestore(&primary_channel->lock, flags);
+	}
 
 	/* vmbus_process_offer() has mapped the channel. */
 	vmbus_channel_unmap_relid(newchannel);
@@ -553,6 +563,7 @@ static void vmbus_process_offer(struct vmbus_channel *newchannel)
 {
 	struct vmbus_channel *channel;
 	struct workqueue_struct *wq;
+	unsigned long flags;
 	bool fnew = true;
 
 	/*
@@ -604,10 +615,10 @@ static void vmbus_process_offer(struct vmbus_channel *newchannel)
 		}
 	}
 
-	if (fnew) {
+	if (fnew)
 		list_add_tail(&newchannel->listentry,
 			      &vmbus_connection.chn_list);
-	} else {
+	else {
 		/*
 		 * Check to see if this is a valid sub-channel.
 		 */
@@ -625,7 +636,9 @@ static void vmbus_process_offer(struct vmbus_channel *newchannel)
 		 * Process the sub-channel.
 		 */
 		newchannel->primary_channel = channel;
+		spin_lock_irqsave(&channel->lock, flags);
 		list_add_tail(&newchannel->sc_list, &channel->sc_list);
+		spin_unlock_irqrestore(&channel->lock, flags);
 	}
 
 	vmbus_channel_map_relid(newchannel);
