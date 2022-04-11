@@ -39,6 +39,7 @@ void hv_stimer0_callback_vector(void);
 
 #if IS_ENABLED(CONFIG_HYPERV)
 extern void *hv_hypercall_pg;
+extern void  __percpu  **hyperv_pcpu_input_arg;
 
 static inline u64 hv_do_hypercall(u64 control, void *input, void *output)
 {
