@@ -635,6 +635,32 @@ static void vmbus_process_offer(struct vmbus_channel *newchannel)
 }
 
 /*
+ * Check if CPU is used by other channels of the same device.
+ * It should only be called by init_vp_index().
+ */
+static bool hv_cpuself_used(u32 cpu, struct vmbus_channel *chn)
+{
+	struct vmbus_channel *primary = chn->primary_channel;
+	struct vmbus_channel *sc;
+	bool self_used = false;
+	unsigned long flags;
+
+	if (!primary)
+		return false;
+
+	if (primary->target_cpu == cpu)
+		return true;
+
+	spin_lock_irqsave(&primary->lock, flags);
+	list_for_each_entry(sc, &primary->sc_list, sc_list)
+		if (sc != chn && sc->target_cpu == cpu)
+			self_used = true;
+	spin_unlock_irqrestore(&primary->lock, flags);
+
+	return self_used;
+}
+
+/*
  * We use this state to statically distribute the channel interrupt load.
  */
 static int next_numa_node_id;
@@ -660,6 +686,7 @@ static void init_vp_index(struct vmbus_channel *channel, u16 dev_type)
 	u32 cur_cpu;
 	bool perf_chn = vmbus_devs[dev_type].perf_device;
 	struct vmbus_channel *primary = channel->primary_channel;
+	u32 cnt = 1, ncpu = num_online_cpus();
 	int next_node;
 	cpumask_var_t available_mask;
 	struct cpumask *alloced_mask;
@@ -682,6 +709,7 @@ static void init_vp_index(struct vmbus_channel *channel, u16 dev_type)
 
 	spin_lock(&bind_channel_to_cpu_lock);
 
+retry:
 	/*
 	 * Based on the channel affinity policy, we will assign the NUMA
 	 * nodes.
@@ -760,6 +788,11 @@ static void init_vp_index(struct vmbus_channel *channel, u16 dev_type)
 			break;
 		}
 	}
+
+	if (channel->affinity_policy == HV_BALANCED &&
+	    channel->offermsg.offer.sub_channel_index < ncpu &&
+	    cnt++ < ncpu + 1 && hv_cpuself_used(cur_cpu, channel))
+		goto retry;
 
 	channel->target_cpu = cur_cpu;
 	channel->target_vp = hv_cpu_number_to_vp_number(cur_cpu);
