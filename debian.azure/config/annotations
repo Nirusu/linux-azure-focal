@@ -160,7 +160,7 @@ CONFIG_USB_EHCI_HCD                                mark<ENFORCED> note<kernel re
 CONFIG_USB_EHCI_HCD_PLATFORM                       policy<{'amd64': '-'}>
 CONFIG_USB_EHCI_HCD_PLATFORM                       mark<ENFORCED> note<kernel reduction>
 
-CONFIG_TOUCHSCREEN_ELAN                            policy<{'amd64': '-', 'arm64': 'n'}>
+CONFIG_TOUCHSCREEN_ELAN                            policy<{'amd64': '-', 'arm64': '-'}>
 CONFIG_TOUCHSCREEN_ELAN                            mark<ENFORCED> note<kernel reduction>
 
 CONFIG_SOUND                                       policy<{'amd64': 'n', 'arm64': 'n'}>
@@ -285,7 +285,7 @@ CONFIG_SND_SOC_AMD_RENOIR                          note<Unnecessary for Azure>
 CONFIG_SND_SOC_AMD_RENOIR_MACH                     policy<{'amd64': '-'}>
 CONFIG_SND_SOC_AMD_RENOIR_MACH                     note<Unnecessary for Azure>
 
-CONFIG_BT_HS                                       policy<{'amd64': '-', 'arm64': 'y'}>
+CONFIG_BT_HS                                       policy<{'amd64': '-', 'arm64': '-'}>
 CONFIG_BT_HS                                       mark<ENFORCED> note<https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-00435.html>
 
 CONFIG_SPI_INTEL_SPI_PCI                           policy<{'amd64': '-'}>
