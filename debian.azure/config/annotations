@@ -4,6 +4,13 @@
 
 include "../../debian.master/config/annotations"
 
+CONFIG_ATA_PIIX                                    policy<{'amd64': 'm', 'arm64': 'y'}>
+CONFIG_HYPERV_IOMMU                                policy<{'amd64': 'y', 'arm64': 'y'}>
+CONFIG_DMA_CMA                                     policy<{'amd64': 'n', 'arm64': 'n'}>
+CONFIG_CMA_SIZE_MBYTES                             policy<{'amd64': '32', 'arm64': '-'}>
+CONFIG_VFIO                                        policy<{'amd64': 'y', 'arm64': 'y'}>
+CONFIG_HIO                                         policy<{'amd64': 'm', 'arm64': 'm'}>
+
 CONFIG_HIBERNATION                                 policy<{'amd64': 'y', 'arm64': 'y'}>
 CONFIG_HIBERNATION                                 mark<ENFORCED> note<LP:1967336>
 
@@ -130,13 +137,13 @@ CONFIG_USB_XHCI_HCD                                mark<ENFORCED> note<LP:#18670
 CONFIG_USB_XHCI_PCI                                policy<{'amd64': 'y', 'arm64': 'y'}>
 CONFIG_USB_XHCI_PCI                                mark<ENFORCED> note<LP:#1867002> note<Enable xHCI for PCI passthrough>
 
-CONFIG_USB_XHCI_PLATFORM                           policy<{'amd64': 'm', 'arm64': 'y'}>
+CONFIG_USB_XHCI_PLATFORM                           policy<{'amd64': 'm', 'arm64': 'm'}>
 CONFIG_USB_XHCI_PLATFORM                           mark<ENFORCED> note<LP:#1867002> note<Enable xHCI for PCI passthrough>
 
 CONFIG_CONTEXT_TRACKING_FORCE                      policy<{'amd64': 'n', 'arm64': 'n'}>
 CONFIG_CONTEXT_TRACKING_FORCE                      flag<REVIEW> note<Likely VIRT_CPU_ACCOUNTING_GEN should be disabled>
 
-CONFIG_ATARI_PARTITION                             policy<{'amd64': 'n', 'arm64': '-'}>
+CONFIG_ATARI_PARTITION                             policy<{'amd64': 'n', 'arm64': 'n'}>
 CONFIG_ATARI_PARTITION                             mark<ENFORCED> note<LP:1908264>
 
 # From linux-azure initial packaging
@@ -156,7 +163,7 @@ CONFIG_USB_EHCI_HCD                                mark<ENFORCED> note<kernel re
 CONFIG_USB_EHCI_HCD_PLATFORM                       policy<{'amd64': '-', 'arm64': '-'}>
 CONFIG_USB_EHCI_HCD_PLATFORM                       mark<ENFORCED> note<kernel reduction>
 
-CONFIG_TOUCHSCREEN_ELAN                            policy<{'amd64': '-', 'arm64': 'n'}>
+CONFIG_TOUCHSCREEN_ELAN                            policy<{'amd64': '-', 'arm64': '-'}>
 CONFIG_TOUCHSCREEN_ELAN                            mark<ENFORCED> note<kernel reduction>
 
 CONFIG_SOUND                                       policy<{'amd64': 'n', 'arm64': 'n'}>
@@ -290,7 +297,7 @@ CONFIG_SPI_INTEL_SPI_PCI                           mark<ENFORCED> note<LP:173414
 CONFIG_SPI_INTEL_SPI_PLATFORM                      policy<{'amd64': '-', 'arm64': '-'}>
 CONFIG_SPI_INTEL_SPI_PLATFORM                      mark<ENFORCED> note<LP:1734147> note<this config is not available in linux-azure>
 
-CONFIG_MTD_DOCG3                                   policy<{'amd64': '-', 'arm64': 'n'}>
+CONFIG_MTD_DOCG3                                   policy<{'amd64': '-', 'arm64': '-'}>
 CONFIG_MTD_DOCG3                                   mark<ENFORCED> note<LP:1792205>
 
 CONFIG_SAMPLE_TRACE_PRINTK                         policy<{'amd64': '-', 'arm64': '-'}>
