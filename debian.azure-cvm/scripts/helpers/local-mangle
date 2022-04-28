@@ -41,17 +41,30 @@ variant=
 # shellcheck disable=SC1090
 . "${DEBIAN}/etc/kernelconfig"
 
-# Configs should be in the common config file
-config_file="${DEBIAN}/config/config.common.ubuntu"
+# Custom configs should be in the common config file
 annot_file="${DEBIAN}/config/annotations"
 for config in "${configs[@]}"; do
 	# Split key and value
 	key="${config%%=*}"
 	val="${config#*=}"
-	# Remove any existing config
-	sed -i -e "/^${key}=/d" -e "/^# ${key} /d" "$config_file"
-	# Append desirable config value
-	echo "${key}=${val:-n}" >> "$config_file"
+	# Drop unused archs
+	for arch_dir in "${DEBIAN}"/config/*; do
+		[ ! -d "$arch_dir" ] && continue
+		dir_arch="${arch_dir##*/}"
+		skip=0
+		for arch in ${archs}; do
+			[ "$dir_arch" = "$arch" ] && skip=1
+		done
+		[ "$skip" -ne 0 ] && continue
+		rm -rf "$arch_dir"
+	done
+	for config_file in "${DEBIAN}/config/config.common.ubuntu" \
+				   "${DEBIAN}"/config/*/config.*; do
+		# Remove any existing config
+		sed -i -e "/^${key}=/d" -e "/^# ${key} /d" "$config_file"
+		# Append desirable config value
+		echo "${key}=${val:-n}" >> "$config_file"
+	done
 	# Remove any existing annotations
 	sed -i -e "/^${key}\>/d" "$annot_file"
 	# Append new annotations
