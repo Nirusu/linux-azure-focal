@@ -823,7 +823,6 @@ i2c-i801
 i2c-isch
 i2c-ismt
 i2c-mlxcpld
-i2c-multi-instantiate
 i2c-mux
 i2c-mux-ltc4306
 i2c-nforce2
