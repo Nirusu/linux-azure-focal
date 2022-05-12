@@ -949,7 +949,7 @@ struct page *swiotlb_alloc(struct device *dev, size_t size)
 	if (!mem)
 		return NULL;
 
-	index = swiotlb_find_slots(dev, 0, size, 0);
+	index = swiotlb_find_slots(dev, 0, size);
 	if (index == -1)
 		return NULL;
 
