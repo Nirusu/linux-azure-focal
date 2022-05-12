@@ -104,7 +104,6 @@ af_packet_diag
 affs
 ah4
 ah6
-aha152x_cs
 aha1740
 ahci
 ahci_platform
@@ -344,14 +343,11 @@ cls_rsvp
 cls_rsvp6
 cls_tcindex
 cls_u32
-cm4000_cs
-cm4040_cs
 cmac
 cnic
 coda
 com20020
 com20020-pci
-com20020_cs
 com90io
 com90xx
 comm
@@ -552,7 +548,6 @@ emc1403
 emc2103
 emc6w201
 ems_pci
-ems_pcmcia
 enclosure
 ene_ir
 eni
@@ -636,7 +631,6 @@ fb_watterott
 fbtft
 fcrypt
 fdomain
-fdomain_cs
 fdomain_pci
 fealnx
 ff-memless
@@ -647,8 +641,8 @@ firmware_attributes_class
 fit2
 fit3
 fixed
+floppy
 fm10k
-fmvj18x_cs
 fore_200e
 fou
 fou6
@@ -863,7 +857,6 @@ i5k_amb
 i6300esb
 i7300_edac
 i7core_edac
-i82092
 i82975x_edac
 i915
 iTCO_vendor_support
@@ -1059,7 +1052,6 @@ iptable_security
 ipu3-imgu
 ipvlan
 ipvtap
-ipwireless
 iqs269a
 iqs626a
 iqs62x
@@ -1639,7 +1631,6 @@ parkbd
 parman
 parport
 parport_ax88796
-parport_cs
 parport_pc
 parport_serial
 pata_acpi
@@ -1669,7 +1660,6 @@ pata_ns87415
 pata_oldpiix
 pata_opti
 pata_optidma
-pata_pcmcia
 pata_pdc2027x
 pata_pdc202xx_old
 pata_piccolo
@@ -1699,7 +1689,6 @@ pci-pf-stub
 pci-stub
 pci200syn
 pcips2
-pcmcia
 pcmcia_core
 pcmcia_rsrc
 pcrypt
@@ -1707,11 +1696,9 @@ pcs_xpcs
 pcspkr
 pcwd_pci
 pd
-pd6729
 pdc_adma
 peak_pci
 peak_pciefd
-peak_pcmcia
 peaq-wmi
 pf
 pg
@@ -1816,8 +1803,6 @@ qla1280
 qla2xxx
 qla4xxx
 qlge
-qlogic_cs
-qlogicfas408
 qnx4
 qnx6
 qrtr
@@ -2094,7 +2079,6 @@ sch_skbprio
 sch_taprio
 sch_tbf
 sch_teql
-scr24x_cs
 scsi_debug
 scsi_dh_alua
 scsi_dh_emc
@@ -2107,7 +2091,6 @@ scsi_transport_srp
 sctp
 sctp_diag
 seco-cec
-serial_cs
 serial_ir
 serio_raw
 serpent-avx-x86_64
@@ -2225,9 +2208,7 @@ suni
 sunrpc
 svc-i3c-master
 switchtec
-sym53c500_cs
 sym53c8xx
-synclink_cs
 synclink_gt
 syscopyarea
 sysfillrect
@@ -2520,7 +2501,6 @@ xilinx_sdfec
 xillybus_class
 xillyusb
 xiphera-trng
-xirc2ps_cs
 xlnx_vcu
 xor
 xp
