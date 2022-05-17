@@ -3562,7 +3562,7 @@ destroy_wq:
 free_dom:
 	hv_put_dom_num(hbus->bridge->domain_nr);
 free_bus:
-	free_page((unsigned long)hbus);
+	kfree(hbus);
 	return ret;
 }
 
