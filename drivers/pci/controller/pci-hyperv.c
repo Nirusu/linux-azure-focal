@@ -3388,7 +3388,7 @@ static int hv_pci_probe(struct hv_device *hdev,
 	 * hv_pcibus_device contains the hypercall arguments for retargeting in
 	 * hv_irq_unmask(). Those must not cross a page boundary.
 	 */
-	BUILD_BUG_ON(sizeof(*hbus) > PAGE_SIZE);
+	BUILD_BUG_ON(sizeof(*hbus) > HV_HYP_PAGE_SIZE);
 
 	bridge = devm_pci_alloc_host_bridge(&hdev->device, 0);
 	if (!bridge)
@@ -3412,7 +3412,7 @@ static int hv_pci_probe(struct hv_device *hdev,
 	 * positive by using kmemleak_alloc() and kmemleak_free() to ask
 	 * kmemleak to track and scan the hbus buffer.
 	 */
-	hbus = kzalloc(HV_HYP_PAGE_SIZE, GFP_KERNEL);
+	hbus = (struct hv_pcibus_device *)kzalloc(HV_HYP_PAGE_SIZE, GFP_KERNEL);
 	if (!hbus)
 		return -ENOMEM;
 
@@ -3670,7 +3670,7 @@ static int hv_pci_remove(struct hv_device *hdev)
 
 	hv_put_dom_num(hbus->bridge->domain_nr);
 
-	free_page((unsigned long)hbus);
+	kfree(hbus);
 	return ret;
 }
 
