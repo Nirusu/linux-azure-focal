@@ -108,6 +108,7 @@ ahci_qoriq
 ahci_seattle
 ahci_tegra
 ahci_xgene
+aht10
 aic79xx
 aic7xxx
 aic94xx
@@ -193,6 +194,11 @@ async_tx
 async_xor
 at24
 ata_piix
+atc260x-core
+atc260x-i2c
+atc260x-onkey
+atc260x-poweroff
+atc260x-regulator
 atlantic
 atm
 atmel-ecc
@@ -245,6 +251,7 @@ bcm590xx
 bcm7038_wdt
 bcm7xxx
 bcm_crypto_spu
+bcm_vk
 bcma
 bcmsysport
 bd9571mwv
@@ -329,6 +336,8 @@ cdns-csi2tx
 cdns-dphy
 cdns-dsi
 cdns-mhdp8546
+cdns-usb-common
+cdnsp-udc-pci
 cec
 ceph
 cfb
@@ -426,6 +435,8 @@ cxgb
 cxgb3
 cxgb4
 cxgb4vf
+cxl_bus
+cxl_mem
 da9052-hwmon
 da9052_wdt
 da9063
@@ -515,6 +526,7 @@ dw-hdmi
 dw-hdmi-cec
 dw-i3c-master
 dw-mipi-dsi
+dw-xdata-pcie
 dw_dmac_core
 dw_dmac_pci
 dw_drm_dsi
@@ -547,6 +559,7 @@ ebtables
 ec_sys
 ecc
 ecdh_generic
+ecdsa_generic
 echainiv
 ecrdsa_generic
 ee1004
@@ -583,6 +596,7 @@ esp6_offload
 esp_scsi
 essiv
 et131x
+etas_es58x
 ethoc
 evbug
 exfat
@@ -720,6 +734,7 @@ gianfar_driver
 gl518sm
 gl520sm
 gnss
+goldfish_battery
 gpi
 gpio-74x164
 gpio-74xx-mmio
@@ -807,6 +822,7 @@ gre
 gs1662
 gsc-hwmon
 gtp
+gud
 gve
 habanalabs
 hamachi
@@ -850,7 +866,9 @@ hid-macally
 hid-maltron
 hid-mf
 hid-nti
+hid-playstation
 hid-redragon
+hid-semitek
 hid-sensor-custom
 hid-sensor-hub
 hid-steam
@@ -917,6 +935,7 @@ i2c-bcm2835
 i2c-brcmstb
 i2c-cbus-gpio
 i2c-core
+i2c-cp2615
 i2c-demux-pinctrl
 i2c-designware-core
 i2c-designware-pci
@@ -1135,6 +1154,7 @@ iptable_security
 ipvlan
 ipvtap
 iqs269a
+iqs626a
 iqs62x
 iqs62x-keys
 ir-hix5hd2
@@ -1261,6 +1281,7 @@ ledtrig-activity
 ledtrig-audio
 ledtrig-netdev
 ledtrig-pattern
+ledtrig-tty
 libarc4
 libblake2s
 libblake2s-generic
@@ -1331,6 +1352,7 @@ ltc2947-i2c
 ltc2947-spi
 ltc2990
 ltc4151
+ltc4162-l-charger
 ltc4215
 ltc4222
 ltc4245
@@ -1368,6 +1390,7 @@ mailbox-test
 mailbox-xgene-slimpro
 mali-dp
 marvell
+marvell-88x2222
 marvell-cesa
 marvell10g
 matrix-keymap
@@ -1417,6 +1440,7 @@ mdio
 mdio-bcm-unimac
 mdio-bitbang
 mdio-cavium
+mdio-gpio
 mdio-hisi-femac
 mdio-i2c
 mdio-ipq4019
@@ -1455,6 +1479,7 @@ meson_dw_hdmi
 meson_gxbb_wdt
 meson_wdt
 mhi
+mhi_wwan_ctrl
 mi0283qt
 michael_mic
 microchip-tcb-capture
@@ -1914,6 +1939,7 @@ pcf50633
 pcf50633-adc
 pcf50633-gpio
 pcf8591
+pci-epf-ntb
 pci-pf-stub
 pci-stub
 pci200syn
@@ -2081,6 +2107,7 @@ ptp-qoriq
 ptp_clockmatrix
 ptp_dte
 ptp_idt82p33
+ptp_kvm
 pulse8-cec
 pvpanic
 pvpanic-mmio
@@ -2833,7 +2860,9 @@ torture
 tpci200
 tpm_ftpm_tee
 tpm_key_parser
+tpm_tis_i2c_cr50
 tpm_tis_synquacer
+tps23861
 tps6105x
 tps65010
 tps6507x
@@ -2913,18 +2942,14 @@ venus-enc
 veth
 vexpress-hwmon
 vexpress-regulator
-vfio
 vfio-amba
 vfio-fsl-mc
-vfio-pci
 vfio-platform
 vfio-platform-amdxgbe
 vfio-platform-base
 vfio-platform-calxedaxgmac
-vfio_iommu_type1
 vfio_mdev
 vfio_platform_bcmflexrm
-vfio_virqfd
 vgg2432a4
 vhost
 vhost_iotlb
@@ -2961,6 +2986,7 @@ virtio_rpmsg_bus
 virtio_scsi
 virtio_vdpa
 virtiofs
+virtual_ncidev
 visconti_wdt
 vitesse
 vitesse-vsc73xx-core
@@ -3046,6 +3072,7 @@ xilinx-vtc
 xilinx_can
 xilinx_dma
 xilinx_emac
+xilinx_emaclite
 xilinx_sdfec
 xilinx_uartps
 xilinxfb
@@ -3053,6 +3080,9 @@ xiphera-trng
 xlnx_vcu
 xor
 xor-neon
+xrs700x
+xrs700x_i2c
+xrs700x_mdio
 xsk_diag
 xt_AUDIT
 xt_CHECKSUM
