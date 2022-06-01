@@ -11,7 +11,7 @@ Build-Depends:
  python3-apt,
  HEADERS_ARCH (>= UNSIGNED_SRC_VERSION),
 Build-Depends-Arch:
- linux-image-unsigned-ABI-azure-cvm,
+ linux-image-unsigned-ABI-azure,
 Vcs-Git: git://mhcerri@git.launchpad.net/~canonical-kernel/ubuntu/+source/linux-azure/+git/focal -b azure-fde
 
 Package: linux-image-unsigned-ABI-azure-fde

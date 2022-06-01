@@ -1,5 +1,5 @@
-Name:    linux-azure-fde
-Version: 5.4.0
+Name:    linux-azure-fde-5.15
+Version: 5.15.0
 Series:  20.04 (focal)
 Description:
     This is the source code for the Ubuntu linux kernel for the 20.04 series. This
