@@ -6,7 +6,7 @@ SHELL = /bin/bash -e
 DEBIAN = $(shell awk -F= '($$1 == "DEBIAN") { print $$2 }' <debian/debian.env)
 DEB_HOST_ARCH = $(shell dpkg-architecture -qDEB_HOST_ARCH)
 
-flavours = azure-cvm
+flavours = azure
 src = $(shell dpkg-parsechangelog -l"$(DEBIAN)/changelog" -SSource)
 ver = $(shell dpkg-parsechangelog -l"$(DEBIAN)/changelog" -SVersion)
 abi = $(shell echo "$(ver)" | sed -ne 's/\([0-9]*\.[0-9]*\.[0-9]*\-[0-9]*\)\..*/\1/p')
@@ -14,14 +14,14 @@ abi = $(shell echo "$(ver)" | sed -ne 's/\([0-9]*\.[0-9]*\.[0-9]*\-[0-9]*\)\..*/
 # Work out the source package name and version of the unsigned package
 # By convention, it is the name of this package with -fde stripped.
 # The version is identical to this package less any rebuild suffix (.N).
-unsigned_src = $(shell echo $(src) | sed -e 's/-fde/-cvm/')
+unsigned_src = $(shell echo $(src) | sed -e 's/-fde//')
 unsigned_ver = $(shell echo $(ver) | sed -e 's/\.[^.]\+$$//')
 
 # Work out header packges for build deps. Depend on the common header
 # package and the per-arch generic headers package (assumes all arches
 # have a generic flavour, which is currently true).
 src_headers = $(unsigned_src)-headers-$(abi)
-src_headers_arch = linux-headers-$(abi)-azure-cvm
+src_headers_arch = linux-headers-$(abi)-azure
 
 # We build our control file.  This has to be done before dh runs otherwise
 # we have no binary files and we will not run the appropriate targets.
@@ -148,7 +148,7 @@ startnewrelease:
 	dh_testdir
 	@flavour=$$(echo "$(flavours)" | cut -f1 -d' ');				\
 	prev_ver=$$(dpkg-parsechangelog -l"$(DEBIAN)/changelog" -SVersion);		\
-	ver=$$(debian/scripts/misc/get-kernel-version source "$$flavour");		\
+	ver=$$(debian/scripts/misc/get-kernel-version source "$${flavour}-5.15");	\
 	if [ "$${prev_ver%.*}" = "$${ver}" ]; then					\
 		ver="$${prev_ver%.*}.$$(( $${prev_ver##*.} +1))";			\
 	else										\
