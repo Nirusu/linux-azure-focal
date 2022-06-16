@@ -10,7 +10,6 @@
 8250_exar
 8250_lpss
 8250_men_mcb
-8250_mid
 842
 842_compress
 842_decompress
@@ -642,7 +641,6 @@ firmware_attributes_class
 fit2
 fit3
 fixed
-floppy
 fm10k
 fore_200e
 fou
@@ -789,7 +787,6 @@ hpsa
 hptiop
 hpwdt
 hsr
-hsu_dma
 htc-pasic3
 hv_azure_blob
 hv_netvsc
@@ -825,7 +822,6 @@ i2c-i801
 i2c-isch
 i2c-ismt
 i2c-mlxcpld
-i2c-multi-instantiate
 i2c-mux
 i2c-mux-ltc4306
 i2c-nforce2
@@ -2093,6 +2089,7 @@ scsi_transport_srp
 sctp
 sctp_diag
 seco-cec
+serial-multi-instantiate
 serial_ir
 serio_raw
 serpent-avx-x86_64
@@ -2164,6 +2161,18 @@ sony-laptop
 soundwire-bus
 sp5100_tco
 sparse-keymap
+speakup
+speakup_acntsa
+speakup_apollo
+speakup_audptr
+speakup_bns
+speakup_decext
+speakup_dectlk
+speakup_dummy
+speakup_ltlk
+speakup_soft
+speakup_spkout
+speakup_txprt
 speedstep-lib
 spi-altera-core
 spi-altera-platform
