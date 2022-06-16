@@ -18,7 +18,6 @@ do_tools_x86	= true
 do_tools_hyperv	= true
 do_extras_package = true
 do_tools_common = false
-do_zfs		= true
 do_libc_dev_package=false
 disable_d_i=true
 do_source_package = false
