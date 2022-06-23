@@ -17395,6 +17395,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0xa2ad70b5	component_unbind_all
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2b2b9d0	devm_spi_mem_dirmap_destroy
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2b99209	alarm_start
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2cf58b7	ethnl_cable_test_fault_length
+EXPORT_SYMBOL_GPL	 vmlinux 0xa2d0b59d	mmio_stale_data_clear
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2d20d18	thermal_zone_device_register
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2da1ead	rio_mport_read_config_8
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2dde6e1	debugfs_lookup
