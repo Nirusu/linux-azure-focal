@@ -1925,7 +1925,6 @@ void cifs_put_smb_ses(struct cifs_ses *ses)
 	list_del_init(&ses->smb_ses_list);
 	spin_unlock(&cifs_tcp_ses_lock);
 
-	spin_lock(&ses->chan_lock);
 	chan_count = ses->chan_count;
 
 	/* close any extra channels */
@@ -1941,7 +1940,6 @@ void cifs_put_smb_ses(struct cifs_ses *ses)
 			ses->chans[i].server = NULL;
 		}
 	}
-	spin_unlock(&ses->chan_lock);
 
 	sesInfoFree(ses);
 	cifs_put_tcp_session(server, 0);
