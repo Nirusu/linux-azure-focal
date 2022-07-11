@@ -232,7 +232,7 @@ int vmbus_connect(void)
 		goto cleanup;
 	}
 
-	if (hv_isolation_type_snp()) {
+	if (hv_is_isolation_supported()) {
 		pfn[0] = virt_to_hvpfn(vmbus_connection.monitor_pages[0]);
 		pfn[1] = virt_to_hvpfn(vmbus_connection.monitor_pages[1]);
 		if (hv_mark_gpa_visibility(2, pfn,
@@ -319,7 +319,7 @@ void vmbus_disconnect(void)
 		vmbus_connection.int_page = NULL;
 	}
 
-	if (hv_isolation_type_snp()) {
+	if (hv_is_isolation_supported()) {
 		if (vmbus_connection.monitor_pages_va[0]) {
 			vunmap(vmbus_connection.monitor_pages[0]);
 			vmbus_connection.monitor_pages[0]
