@@ -4619,3 +4619,9 @@ CONFIG_HID_PRODIKEYS                               policy<{'amd64': '-', 'arm64'
 CONFIG_USB_CONFIGFS_F_MIDI                         policy<{'amd64': '-', 'arm64': '-'}>
 CONFIG_VIDEO_EM28XX_ALSA                           policy<{'amd64': '-', 'arm64': '-'}>
 CONFIG_USB_CONFIGFS_F_UAC2                         policy<{'amd64': '-', 'arm64': '-'}>
+
+#
+# LP: #1949245 - Disable AMD ACP 6 DMIC Support
+#
+CONFIG_SND_SOC_AMD_YC_MACH                         policy<{'amd64': '-'}>
+CONFIG_SND_SOC_AMD_ACP6x                           policy<{'amd64': '-'}>
