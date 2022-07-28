@@ -1,0 +1,184 @@
+linux-azure-fde (5.4.0-1086.91+cvm1.1) focal; urgency=medium
+
+  * Master version: 5.4.0-1086.91+cvm1
+
+  * focal/linux-azure-fde: 5.4.0-1086.91+cvm1.1 -proposed tracker (LP: #1979457)
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Wed, 06 Jul 2022 18:12:51 -0300
+
+linux-azure-fde (5.4.0-1085.90+cvm2.1) focal; urgency=medium
+
+  * focal/linux-azure-fde: 5.4.0-1085.90+cvm2.1 -proposed tracker (LP: #1980029)
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Tue, 28 Jun 2022 01:30:39 -0300
+
+linux-azure-fde (5.4.0-1085.90+cvm1.1) focal; urgency=medium
+
+  * Master version: 5.4.0-1085.90+cvm1
+
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Tue, 14 Jun 2022 20:05:39 -0300
+
+linux-azure-fde (5.4.0-1083.87+cvm1.1) focal; urgency=medium
+
+  * Master version: 5.4.0-1083.87+cvm1
+
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Mon, 06 Jun 2022 21:03:11 -0300
+
+linux-azure-fde (5.4.0-1080.83+cvm1.1) focal; urgency=medium
+
+  * focal/linux-azure-fde: 5.4.0-1080.83+cvm1.1 -proposed tracker (LP: #1973947)
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Mon, 23 May 2022 22:27:36 -0300
+
+linux-azure-fde (5.4.0-1078.81+cvm1.1) focal; urgency=medium
+
+  * focal/linux-azure-fde: 5.4.0-1078.81+cvm1.1 -proposed tracker (LP: #1969021)
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Thu, 28 Apr 2022 14:44:51 -0300
+
+linux-azure-fde (5.4.0-1076.79+cvm1.1) focal; urgency=medium
+
+  * focal/linux-azure-fde: 5.4.0-1076.79+cvm1.1 -proposed tracker (LP: #1967363)
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Mon, 11 Apr 2022 14:21:13 -0300
+
+linux-azure-fde (5.4.0-1074.77+cvm1.1) focal; urgency=medium
+
+  * Master version: 5.4.0-1074.77+cvm1
+
+  * focal/linux-azure-fde: 5.4.0-1074.77+cvm1.1 -proposed tracker (LP: #1966243)
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Wed, 30 Mar 2022 13:47:08 -0300
+
+linux-azure-fde (5.4.0-1073.76+cvm1.1) focal; urgency=medium
+
+  * focal/linux-azure-fde: 5.4.0-1073.76+cvm1.1 -proposed tracker (LP: #1964176)
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Wed, 16 Mar 2022 19:44:28 -0300
+
+linux-azure-fde (5.4.0-1072.75+cvm1.1) focal; urgency=medium
+
+  * Master version: 5.4.0-1072.75+cvm1
+
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Wed, 02 Mar 2022 14:03:10 -0300
+
+linux-azure-fde (5.4.0-1070.73+cvm1.1) focal; urgency=medium
+
+  * focal/linux-azure-fde: 5.4.0-1070.73+cvm1.1 -proposed tracker (LP: #1959247)
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Mon, 14 Feb 2022 15:59:17 -0300
+
+linux-azure-fde (5.4.0-1069.72+cvm1.1) focal; urgency=medium
+
+  * Master version: 5.4.0-1069.72+cvm1
+
+  * focal/linux-azure-fde: 5.4.0-1069.72+cvm1.1 -proposed tracker (LP: #1959786)
+
+ -- Stefan Bader <stefan.bader@canonical.com>  Wed, 09 Feb 2022 16:56:32 +0100
+
+linux-azure-fde (5.4.0-1068.71+cvm1.1) focal; urgency=medium
+
+  * focal/linux-azure-fde: 5.4.0-1068.71+cvm1.1 -proposed tracker (LP: #1955215)
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Tue, 25 Jan 2022 22:14:23 -0300
+
+linux-azure-fde (5.4.0-1067.70+cvm1.1) focal; urgency=medium
+
+  * Master version: 5.4.0-1067.70+cvm1
+
+
+ -- Stefan Bader <stefan.bader@canonical.com>  Thu, 13 Jan 2022 16:38:46 +0100
+
+linux-azure-fde (5.4.0-1065.68+cvm2.1) focal; urgency=medium
+
+  * Master version: 5.4.0-1065.68+cvm2
+
+  * focal/linux-azure-fde: 5.4.0-1065.68+cvm2.1 -proposed tracker (LP: #1952286)
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Fri, 10 Dec 2021 14:43:50 -0300
+
+linux-azure-fde (5.4.0-1064.67+cvm1.1) focal; urgency=medium
+
+  * focal/linux-azure-fde: 5.4.0-1064.67+cvm1.1 -proposed tracker (LP: #1949812)
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Thu, 18 Nov 2021 12:01:55 -0300
+
+linux-azure-fde (5.4.0-1063.66+cvm3.2) focal; urgency=medium
+
+  * focal/linux-azure-fde: 5.4.0-1063.66+cvm3.2 -proposed tracker (LP: #1950401)
+
+  * Miscellaneous Ubuntu changes
+    - [Packaging] Bump ubuntu-core-initramfs depends to 50
+
+ -- Dimitri John Ledkov <dimitri.ledkov@canonical.com>  Wed, 10 Nov 2021 01:24:32 +0000
+
+linux-azure-fde (5.4.0-1063.66+cvm3.1) focal; urgency=medium
+
+  * focal/linux-azure-fde: 5.4.0-1063.66+cvm3.1 -proposed tracker (LP: #1950157)
+
+  * Packaging resync (LP: #1786013)
+    - [Packaging] update Ubuntu.md
+
+ -- Tim Gardner <tim.gardner@canonical.com>  Mon, 08 Nov 2021 12:51:19 -0700
+
+linux-azure-fde (5.4.0-1063.66+cvm2.2) focal; urgency=medium
+
+  * Master version: 5.4.0-1063.66+cvm2
+
+  * focal/linux-azure-fde: 5.4.0-1063.66+cvm2.2 -proposed tracker (LP: #1947231)
+
+  * Packaging resync (LP: #1786013)
+    - [Packaging] update helper scripts
+    - [Packaging] update update.conf
+
+  * linux-azure-cvm: Create a 5.4 based kernel (LP: #1948057)
+    - [Packaging] Build UEFI image from linux-azure-cvm
+    - [Packaging] Build the FDE kernel from alternative flavours
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Tue, 26 Oct 2021 22:37:38 -0300
+
+linux-azure-fde (5.4.0-1058.60+cvmpreview.1.1) focal; urgency=medium
+
+  * Master version: 5.4.0-1058.60
+
+  * Miscellaneous Ubuntu changes
+    - [Packaging] Install EFI binary in /usr/lib/linux/efi/
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Thu, 02 Sep 2021 10:37:37 -0300
+
+linux-azure-fde (5.4.0-1047.49+cvmpreview.6.4) focal; urgency=medium
+
+  * Miscellaneous Ubuntu changes
+    - [Packaging] Increment the upload number
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Tue, 22 Jun 2021 13:24:30 -0300
+
+linux-azure-fde (5.4.0-1047.49+cvmpreview.6.3) focal; urgency=medium
+
+  * Miscellaneous Ubuntu changes
+    - [Packaging] enable console= settings in the cmdline
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Thu, 10 Jun 2021 13:17:22 -0300
+
+linux-azure-fde (5.4.0-1047.49+cvmpreview.6.2) focal; urgency=medium
+
+  * Miscellaneous Ubuntu changes
+    - [Packaging] enable cloudimg-rootfs features in core-initrd
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Wed, 09 Jun 2021 09:02:30 -0300
+
+linux-azure-fde (5.4.0-1047.49+cvmpreview.6.1) focal; urgency=medium
+
+  * Master version: 5.4.0-1047.49+cvmpreview.6
+
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Tue, 08 Jun 2021 21:09:26 -0300
+
+linux-azure-fde (5.4.0-0.0) focal; urgency=medium
+
+  * Initial ABI 5.4.0-0.0
+
+ -- Marcelo Henrique Cerri <marcelo.cerri@canonical.com>  Sat, 05 Jun 2021 17:00:30 -0300
