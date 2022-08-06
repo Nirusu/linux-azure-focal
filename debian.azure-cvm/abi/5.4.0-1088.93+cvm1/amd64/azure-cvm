@@ -8557,6 +8557,7 @@ EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x52e56cbb	kvm_get_apic_mode
 EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x55297612	reset_shadow_zero_bits_mask
 EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x553e8ea7	kvm_apic_set_eoi_accelerated
 EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x565d61c2	kvm_unmap_gfn
+EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x57120323	kvm_x86_ops
 EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x58fa8a6d	kvm_set_cr0
 EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x5956b7b1	kvm_get_dr
 EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x598e8a17	__tracepoint_kvm_nested_vmrun
@@ -8600,7 +8601,6 @@ EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x7f2ba423	kvm_read_l1_tsc
 EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x7f61b1a6	kvm_io_bus_get_dev
 EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x82436d3b	kvm_load_guest_xcr0
 EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x827e3a28	kvm_inject_pending_timer_irqs
-EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x82d7d4ca	kvm_x86_ops
 EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x83c4dd13	kvm_intr_is_single_vcpu
 EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x849344cc	__tracepoint_kvm_pml_full
 EXPORT_SYMBOL_GPL	 arch/x86/kvm/kvm 0x84b1f568	kvm_deliver_exception_payload
