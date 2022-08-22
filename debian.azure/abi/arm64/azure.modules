@@ -1341,7 +1341,6 @@ ledtrig-netdev
 ledtrig-pattern
 ledtrig-tty
 libarc4
-libblake2s
 libceph
 libchacha
 libchacha20poly1305
