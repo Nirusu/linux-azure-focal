@@ -847,6 +847,8 @@ firmware:       radeon/verde_me.bin
 firmware:       radeon/verde_pfp.bin
 firmware:       radeon/verde_rlc.bin
 firmware:       radeon/verde_smc.bin
+firmware:       regulatory.db
+firmware:       regulatory.db.p7s
 firmware:       rockchip/dptx.bin
 firmware:       rp2.fw
 firmware:       rtl_nic/rtl8105e-1.fw

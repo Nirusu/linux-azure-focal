@@ -1163,7 +1163,6 @@ lg-laptop
 libahci
 libahci_platform
 libarc4
-libblake2s
 libceph
 libchacha
 libchacha20poly1305
