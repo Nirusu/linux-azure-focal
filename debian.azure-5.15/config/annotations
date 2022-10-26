@@ -4,6 +4,9 @@
 
 include "../../debian.master/config/annotations"
 
+CONFIG_ARM_SDE_INTERFACE                        policy<{'arm64': '-'}>
+CONFIG_ARM_SDE_INTERFACE                        note<LP: #1990162>
+
 # Menu: Library routines >> DMA Contiguous Memory Allocator >> Selected region size
 CONFIG_CMA                                      policy<{'amd64': 'n', 'arm64': 'n'}> note<LP: #1990167>
 CONFIG_CMA_SIZE_SEL_MBYTES                      policy<{'arm64': '-'}>
